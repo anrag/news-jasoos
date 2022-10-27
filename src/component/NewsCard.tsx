@@ -8,8 +8,7 @@ const NewsCard = (props: INews) => {
   const readNews = () => {
     navigate(`/read/${props.heading}`, { state: props });
   };
-  let { author, content, date, heading, detailContent, imgUrl, location } =
-    props;
+  let { author, content, date, heading, imgUrl } = props;
   return (
     <Card
       style={{ padding: "10px", height: "100px !importnat" }}

@@ -1,7 +1,6 @@
 import { Button, Form, Layout } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import axios from "axios";
-import Input from "rc-input";
 import React, { useState } from "react";
 
 const AdminPanel = () => {

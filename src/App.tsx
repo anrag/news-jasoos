@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Home from "./containers/Home";
-import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NewsDetail from "./containers/DetailNews";
 import AdminPanel from "./containers/admin";
 
