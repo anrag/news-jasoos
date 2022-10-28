@@ -24,55 +24,71 @@ const NewsCard = (props: INews) => {
       navigator.share({
         title: heading,
         text: heading,
-        url: `https://newsjasoos.in/read/${props.heading}`,
+        url: `https://newsjasoos.in/read/${
+          props?.heading
+            ? decodeURIComponent(props?.heading.replaceAll(" ", "-"))
+            : ""
+        }`,
       });
     }
   };
 
   return (
-    <Card
-      style={{ padding: "10px" }}
-      cover={
-        <img
-          alt="example"
-          style={{ height: "35vh", aspectRatio: "initial" }}
-          src={imgUrl}
-        />
-      }
-      actions={[
-        <div style={{ color: "black", fontWeight: 700 }}>
-          <ShareAltOutlined color="black" onClick={shareNews} key="edit" />
-          <br />
-          Share
-        </div>,
-        <div style={{ color: "black", fontWeight: 700 }}>
-          <ReadOutlined
-            onClick={readNews}
-            key={"ReadMore"}
-            alt="Read More"
-            about="react more"
+    <>
+      <meta property="og:site_name" content={`News Jasoos - ${heading}`} />
+      <meta property="og:title" content={heading} />
+      <meta property="og:description" content={shortContent} />
+      <meta property="og:image" itemProp="image" content={imgUrl} />
+      <meta property="og:type" content="website" />
+      <meta property="og:updated_time" content={date} />
+      <Card
+        style={{ padding: "10px", boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)" }}
+        cover={
+          <img
+            alt="example"
+            style={{
+              height: "35vh",
+              aspectRatio: "initial",
+              borderRadius: "10px",
+            }}
+            src={imgUrl}
           />
-          <br />
-          Read More
-        </div>,
-      ]}
-    >
-      <div className="home-news-header">
-        <h2>{heading}</h2>
-        {author && (
-          <Tag color="error">
-            Written by - <b>{author}</b>
-          </Tag>
-        )}
-        {author && (
-          <Tag color="success">
-            <b>{date}</b>
-          </Tag>
-        )}
-      </div>
+        }
+        actions={[
+          <div style={{ color: "black", fontWeight: 700 }}>
+            <ShareAltOutlined color="black" onClick={shareNews} key="edit" />
+            <br />
+            Share
+          </div>,
+          <div style={{ color: "black", fontWeight: 700 }}>
+            <ReadOutlined
+              onClick={readNews}
+              key={"ReadMore"}
+              alt="Read More"
+              about="react more"
+            />
+            <br />
+            Read More
+          </div>,
+        ]}
+      >
+        <div className="home-news-header">
+          <h2>{heading}</h2>
+          {author && (
+            <Tag color="error">
+              <b>{author}</b>
+            </Tag>
+          )}
+          {author && (
+            <Tag color="success">
+              <b>{date}</b>
+            </Tag>
+          )}
+        </div>
 
-      <div className="home-news-article hindi-font">{shortContent}</div>
-    </Card>
+        <div className="home-news-article hindi-font">{shortContent}</div>
+      </Card>
+    </>
   );
 };
 

@@ -22,7 +22,7 @@ const Home = () => {
         apiResponse.map((e: any) => (
           <div style={{ height: "auto" }}>
             <NewsCard
-              author={"Chote"}
+              author={"Avneesh Chaudhary"}
               imgUrl={e?.imageurl}
               content={e.detail}
               heading={e.Heading}

@@ -16,6 +16,7 @@ const NewsDetail = () => {
           height: "70px",
           width: "100%",
           background: "#fff",
+          boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)",
         }}
         className="site-page-header"
         onBack={() => navigate("/")}
