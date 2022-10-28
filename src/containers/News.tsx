@@ -8,6 +8,7 @@ export interface INews {
   imgUrl?: string;
   location?: string;
   detailContent?: string;
+  shortContent?: string;
 }
 const NewsTemplate = (props: INews) => {
   let { heading, author, content, date, imgUrl, location } = props;

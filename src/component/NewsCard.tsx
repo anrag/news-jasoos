@@ -6,9 +6,19 @@ import { useNavigate } from "react-router-dom";
 const NewsCard = (props: INews) => {
   const navigate = useNavigate();
   const readNews = () => {
-    navigate(`/read/${props.heading}`, { state: props });
+    window.scrollTo(0, 0);
+    navigate(
+      `/read/${
+        props?.heading
+          ? decodeURIComponent(props?.heading.replaceAll(" ", "-"))
+          : ""
+      }`,
+      {
+        state: props,
+      }
+    );
   };
-  let { author, content, date, heading, imgUrl } = props;
+  let { author, content, date, heading, imgUrl, shortContent } = props;
   const shareNews = () => {
     if (navigator.share) {
       navigator.share({
@@ -21,16 +31,30 @@ const NewsCard = (props: INews) => {
 
   return (
     <Card
-      style={{ padding: "10px", height: "100px !importnat" }}
-      cover={<img alt="example" src={imgUrl} />}
+      style={{ padding: "10px" }}
+      cover={
+        <img
+          alt="example"
+          style={{ height: "35vh", aspectRatio: "initial" }}
+          src={imgUrl}
+        />
+      }
       actions={[
-        <ShareAltOutlined onClick={shareNews} key="edit" />,
-        <ReadOutlined
-          onClick={readNews}
-          key={"ReadMore"}
-          alt="Read More"
-          about="react more"
-        />,
+        <div style={{ color: "black", fontWeight: 700 }}>
+          <ShareAltOutlined color="black" onClick={shareNews} key="edit" />
+          <br />
+          Share
+        </div>,
+        <div style={{ color: "black", fontWeight: 700 }}>
+          <ReadOutlined
+            onClick={readNews}
+            key={"ReadMore"}
+            alt="Read More"
+            about="react more"
+          />
+          <br />
+          Read More
+        </div>,
       ]}
     >
       <div className="home-news-header">
@@ -47,7 +71,7 @@ const NewsCard = (props: INews) => {
         )}
       </div>
 
-      <div className="home-news-article hindi-font">{content}</div>
+      <div className="home-news-article hindi-font">{shortContent}</div>
     </Card>
   );
 };

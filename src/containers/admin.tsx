@@ -26,10 +26,10 @@ const AdminPanel = () => {
     setdetailWordLength(WordCount(e?.target?.value));
   };
   const saveNews = async (e: any) => {
-    console.log(e);
+    // console.log(e);
     await axios({
       method: "post",
-      url: "http://ec2-3-110-195-209.ap-south-1.compute.amazonaws.com:8000/addArticle",
+      url: "http://15.206.243.103:8000/addArticle",
       data: e,
     })
       .then((e) => console.log(e))

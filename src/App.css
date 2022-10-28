@@ -36,6 +36,7 @@ h2 {
 .detail-base {
   margin-top: 90px;
   display: flex;
+  padding: 10px;
   flex-direction: column;
   margin-bottom: 50px;
 }
