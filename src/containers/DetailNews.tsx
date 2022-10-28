@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Home from "./Home";
 
 const NewsDetail = () => {
-  const { state } = useLocation();
+  const { state, pathname } = useLocation();
   const navigate = useNavigate();
 
   return (
@@ -24,8 +24,8 @@ const NewsDetail = () => {
       />
       <Helmet>
         <meta charSet="utf-8" />
-        <title>My Title</title>
-        <link rel="canonical" href="http://mysite.com/example" />
+        <title>{state?.heading}</title>
+        <link rel="canonical" href={pathname} />
       </Helmet>
       <div className="detail-base">
         <div className="detail-page">

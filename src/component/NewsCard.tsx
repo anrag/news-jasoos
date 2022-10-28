@@ -23,8 +23,8 @@ const NewsCard = (props: INews) => {
     if (navigator.share) {
       navigator.share({
         title: heading,
-        text: content,
-        url: `/read/${props.heading}`,
+        text: heading,
+        url: `https://newsjasoos.in/read/${props.heading}`,
       });
     }
   };
