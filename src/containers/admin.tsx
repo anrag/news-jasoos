@@ -1,9 +1,10 @@
-import { Button, Form, Layout } from "antd";
+import { Button, Form, Layout, message } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import axios from "axios";
 import React, { useState } from "react";
 
 const AdminPanel = () => {
+  const [form] = Form.useForm();
   const [headingCharLength, setHeadingCharLength] = useState(0);
   const [headingWordLength, setheadingWordLength] = useState(0);
 
@@ -32,7 +33,11 @@ const AdminPanel = () => {
       url: "https://dailycrimenews.in/addArticle",
       data: e,
     })
-      .then((e) => console.log(e))
+      .then((e) => {
+        message.destroy();
+        message.success("Published Successfuly");
+        window.location.reload();
+      })
       .catch((e) => console.log(e));
   };
   return (
@@ -45,7 +50,12 @@ const AdminPanel = () => {
       }}
     >
       <h1>Add News</h1>
-      <Form style={{ width: "80%" }} onFinish={saveNews}>
+      <Form
+        form={form}
+        style={{ width: "80%" }}
+        name="newsform"
+        onFinish={saveNews}
+      >
         <Form.Item name="Heading" label="Heading" rules={[{ required: true }]}>
           <TextArea
             rows={1}
