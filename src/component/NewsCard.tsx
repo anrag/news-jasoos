@@ -9,8 +9,8 @@ const NewsCard = (props: INews) => {
     window.scrollTo(0, 0);
     navigate(
       `/read/${
-        props?.heading
-          ? decodeURIComponent(props?.heading.replaceAll(" ", "-"))
+        props?.urlSlug
+          ? decodeURIComponent(props?.urlSlug.replaceAll(" ", "-"))
           : ""
       }`,
       {
@@ -25,8 +25,8 @@ const NewsCard = (props: INews) => {
         title: heading,
         text: heading,
         url: `https://newsjasoos.in/read/${
-          props?.heading
-            ? decodeURIComponent(props?.heading.replaceAll(" ", "-"))
+          props?.urlSlug
+            ? decodeURIComponent(props?.urlSlug.replaceAll(" ", "-"))
             : ""
         }`,
       });

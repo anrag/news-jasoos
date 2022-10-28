@@ -64,6 +64,10 @@ const AdminPanel = () => {
         >
           <TextArea rows={1} placeholder="Add Image Url" />
         </Form.Item>
+
+        <Form.Item name="urlSlug" label="url-slug" rules={[{ required: true }]}>
+          <TextArea rows={1} placeholder="add URL slug" />
+        </Form.Item>
         <Form.Item
           name={"short-detail"}
           label="60 Words"

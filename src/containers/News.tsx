@@ -8,6 +8,7 @@ export interface INews {
   imgUrl?: string;
   location?: string;
   detailContent?: string;
+  urlSlug?: string;
   shortContent?: string;
 }
 const NewsTemplate = (props: INews) => {

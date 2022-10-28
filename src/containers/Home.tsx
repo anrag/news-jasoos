@@ -26,6 +26,7 @@ const Home = () => {
               imgUrl={e?.imageurl}
               content={e.detail}
               heading={e.Heading}
+              urlSlug={e.urlSlug}
               detailContent={e.detail}
               shortContent={e["short-detail"]}
               location={e?.location}
