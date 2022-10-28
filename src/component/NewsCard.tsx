@@ -9,12 +9,22 @@ const NewsCard = (props: INews) => {
     navigate(`/read/${props.heading}`, { state: props });
   };
   let { author, content, date, heading, imgUrl } = props;
+  const shareNews = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: heading,
+        text: content,
+        url: `/read/${props.heading}`,
+      });
+    }
+  };
+
   return (
     <Card
       style={{ padding: "10px", height: "100px !importnat" }}
       cover={<img alt="example" src={imgUrl} />}
       actions={[
-        <ShareAltOutlined key="edit" />,
+        <ShareAltOutlined onClick={shareNews} key="edit" />,
         <ReadOutlined
           onClick={readNews}
           key={"ReadMore"}
