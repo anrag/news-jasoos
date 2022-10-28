@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <React.Fragment>
       {apiResponse?.length > 0 ? (
-        apiResponse.map((e: any) => (
+        apiResponse.reverse().map((e: any) => (
           <div style={{ height: "auto" }}>
             <NewsCard
               author={"Avneesh Chaudhary"}
