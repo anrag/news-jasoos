@@ -29,7 +29,7 @@ const AdminPanel = () => {
     // console.log(e);
     await axios({
       method: "post",
-      url: "http://15.206.243.103:8000/addArticle",
+      url: "https://dailycrimenews.in/addArticle",
       data: e,
     })
       .then((e) => console.log(e))

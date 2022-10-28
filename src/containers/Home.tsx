@@ -11,7 +11,7 @@ const Home = () => {
   const fetchCall = async () => {
     let response = await axios({
       method: "get",
-      url: "http://15.206.243.103:8000/readNews",
+      url: "https://dailycrimenews.in/readNews",
     });
     // console.log(response.data.news);
     setApiResponse(response.data.news);
