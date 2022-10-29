@@ -51,6 +51,7 @@ export default function Home() {
     <>
       {router.pathname == "/" && (
         <Head>
+          <link rel="manifest" href="/manifest.json" />
           <meta
             name="description"
             content="News Site about crime and bollywood news coverrage"

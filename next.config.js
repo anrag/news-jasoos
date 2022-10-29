@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+const withPWA = require("next-pwa");
 const nextConfig = {
   reactStrictMode: false,
   distDir: "build",
@@ -8,5 +9,9 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
 };
+
+module.exports = withPWA({
+  dest: "public",
+});
 
 module.exports = nextConfig;

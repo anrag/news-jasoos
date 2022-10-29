@@ -35,6 +35,7 @@ const Post = () => {
     <>
       <Head>
         <title>News Jasoos - {detail?.title}</title>
+        <link rel="manifest" href="/manifest.json" />
         <meta name="description" content={detail?.title} />
         <meta property="og:image" content={detail?.featureImage} />
         {detail?.id && (
