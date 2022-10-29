@@ -7,6 +7,7 @@ import { Tag } from "antd";
 import moment from "moment";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Link from "next/link";
 export default function Home() {
   const router = useRouter();
   console.log(router.pathname);
@@ -92,7 +93,7 @@ export default function Home() {
               key={id}
               className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
             >
-              <a href={`https://newsjasoos.in/read/${e.id}`}>
+              <Link href={`https://newsjasoos.in/read/${e.id}`}>
                 {e?.featureImage && (
                   <Image
                     className="rounded-t-lg"
@@ -104,7 +105,7 @@ export default function Home() {
                     alt={e.title}
                   />
                 )}
-              </a>
+              </Link>
               <div className="p-5">
                 <Tag color="magenta">अवनीश चौधरी</Tag>
                 <Tag color="magenta">
@@ -113,11 +114,11 @@ export default function Home() {
                   )}
                 </Tag>
 
-                <a href={`https://newsjasoos.in/read/${e.id}`}>
+                <Link passHref href={`https://newsjasoos.in/read/${e.id}`}>
                   <h1 className="mb-2 text-l font-bold tracking-tight text-gray-900 dark:text-white">
                     {e.title}
                   </h1>
-                </a>
+                </Link>
                 <p className="mb-3 font-normal text-gray-700 dark:text-white">
                   {e.shortArticle?.substring(0, 500)}
                 </p>
@@ -134,12 +135,12 @@ export default function Home() {
                   >
                     Share
                   </a>
-                  <a
+                  <Link
                     href={`https://newsjasoos.in/read/${e.id}`}
                     className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
                   >
                     Read More
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

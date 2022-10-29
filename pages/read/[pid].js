@@ -8,6 +8,7 @@ import Home from "..";
 import moment from "moment";
 import { Button, Tag } from "antd";
 import Head from "next/head";
+import Link from "next/link";
 const qdata = gql`
   query article($id: ID!) {
     article(query: { id: $id }) {
@@ -50,14 +51,16 @@ const Post = () => {
       <div className="bg-white dark:bg-slate-800 flex flex-col">
         <div className="flex  sticky top-0 z-50">
           <div className="basis-1/2 p-5">
-            <Button
-              style={{ borderRadius: 10 }}
-              type="primary"
-              title="Back"
-              href="/"
-            >
-              Back
-            </Button>
+            <Link href={"/"} passHref>
+              <Button
+                style={{ borderRadius: 10 }}
+                type="primary"
+                title="Back"
+                href="/"
+              >
+                Back
+              </Button>
+            </Link>
           </div>
           <div>
             <SideNavbar />
@@ -105,6 +108,7 @@ const Post = () => {
                 height={80}
                 width={"100%"}
                 layout="responsive"
+                priority
                 src={data?.article.data[0]?.secondaryImage}
                 alt={detail?.title}
               />
