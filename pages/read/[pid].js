@@ -36,10 +36,12 @@ const Post = () => {
         <title>News Jasoos - {detail?.title}</title>
         <meta name="description" content={detail?.title} />
         <meta property="og:image" content={detail?.featureImage} />
-        <meta
-          property="og:url"
-          content={"https://newsjasoos.in/" + router.pathname}
-        />
+        {detail?.id && (
+          <meta
+            property="og:url"
+            content={"https://newsjasoos.in/" + detail?.id}
+          />
+        )}
         <meta property="og:title" content={detail?.title?.substring(0, 35)} />
         <meta property="og:description" content={detail?.title} />
         <meta property="og:type" content="article" />
