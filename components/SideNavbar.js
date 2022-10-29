@@ -7,35 +7,35 @@ import { BiCameraMovie } from "react-icons/bi";
 
 function SideNavbar() {
   return (
-    <div className="md:hidden">
+    <div className="md:hidden ">
       <Disclosure as="nav">
         <Disclosure.Button className="absolute top-4 right-4 inline-flex items-center peer justify-center rounded-md p-2 text-gray-800 hover:bg-gray-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white group">
           <GiHamburgerMenu
-            className="block md:hidden h-6 w-6"
+            className="text-black dark:text-slate-100 block md:hidden h-6 w-6"
             aria-hidden="true"
           />
         </Disclosure.Button>
-        <div className="p-6 w-1/1 h-screen bg-white z-20 fixed top-0 -left-96 lg:left-0 lg:w-60  peer-focus:left-0 peer:transition ease-out delay-150 duration-200">
+        <div className="bg-white dark:bg-slate-800 p-6 w-1/1 h-screen bg-white z-20 fixed top-0 -left-96 lg:left-0 lg:w-60  peer-focus:left-0 peer:transition ease-out delay-150 duration-200">
           <div className="flex flex-col justify-start item-center">
-            <h1 className="text-base text-center cursor-pointer font-bold text-blue-900 border-b border-gray-100 pb-4 w-full">
+            <h1 className="text-base text-black dark:text-slate-100 text-center cursor-pointer font-bold text-blue-900 border-b border-gray-100 pb-4 w-full">
               News Jasoos
             </h1>
             <div className=" my-4 border-b border-gray-100 pb-4">
               <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <GiAk47U className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
+                <GiAk47U className="text-black dark:text-slate-100 text-2xl text-gray-600 group-hover:text-white " />
+                <h3 className="text-base text-black dark:text-slate-100 text-gray-800 group-hover:text-white font-semibold ">
                   Crime
                 </h3>
               </div>
               <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <BiCameraMovie className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
+                <BiCameraMovie className="text-black dark:text-slate-100 text-2xl text-gray-600 group-hover:text-white " />
+                <h3 className="text-base text-black dark:text-slate-100 text-gray-800 group-hover:text-white font-semibold ">
                   Movie
                 </h3>
               </div>
               <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdSportsCricket className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
+                <MdSportsCricket className="text-black dark:text-slate-100 text-2xl text-gray-600 group-hover:text-white " />
+                <h3 className="text-base text-black dark:text-slate-100 text-gray-800 group-hover:text-white font-semibold ">
                   Sports
                 </h3>
               </div>
@@ -61,15 +61,15 @@ function SideNavbar() {
             {/* setting  */}
             <div className=" my-4 border-b border-gray-100 pb-4">
               <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdOutlineSettings className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
+                <MdOutlineSettings className="text-black dark:text-slate-100 text-2xl text-gray-600 group-hover:text-white " />
+                <h3 className="text-black dark:text-slate-100 text-base text-gray-800 group-hover:text-white font-semibold ">
                   About Us
                 </h3>
               </div>
 
               <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <FcContacts className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
+                <FcContacts className="text-black dark:text-slate-100 text-2xl text-gray-600 group-hover:text-white " />
+                <h3 className="text-black dark:text-slate-100 text-base text-gray-800 group-hover:text-white font-semibold ">
                   Contact Us
                 </h3>
               </div>
