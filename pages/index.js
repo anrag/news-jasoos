@@ -2,7 +2,7 @@ import SideNavbar from "../components/SideNavbar";
 import { gql } from "@apollo/client";
 import { useEffect, useState } from "react";
 import client from "./api/graphql-client";
-
+import Image from "next/image";
 export default function Home() {
   const [newsArticle, setNewsArticle] = useState([]);
   useEffect(() => {
@@ -52,10 +52,17 @@ export default function Home() {
       </div>
 
       <div className="grid grid-flow-row gap-8 dark:bg-gray-800 dark:border-gray-800 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {newsArticle.map((e) => (
-          <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+        {newsArticle.map((e, id) => (
+          <div
+            key={id}
+            className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+          >
             <a href="#">
-              <img className="rounded-t-lg" src={e.featureImage} alt="" />
+              <Image
+                className="rounded-t-lg"
+                src={e.featureImage}
+                alt={e.title}
+              />
             </a>
             <div className="p-5">
               <a href="#">
