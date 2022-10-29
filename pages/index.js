@@ -34,12 +34,9 @@ export default function Home() {
   const share = (title, url, text) => {
     if (navigator.share) {
       navigator.share({
-        title: `${title.substring(
-          0,
-          400
-        )} पूरी कहानी पढ़ने के लिए 👇 क्लिक करें`,
+        title: `${title}`,
         url,
-        text,
+        text: `${text.substring(0, 400)} पूरी कहानी पढ़ने के लिए 👇 क्लिक करें`,
       });
     }
   };
