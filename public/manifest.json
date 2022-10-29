@@ -1,6 +1,7 @@
 {
   "short_name": "NJ",
   "name": "News Jasoos",
+  "start_url": "https://newsjasoos.in/",
   "description": "News Site about crime and bollywood news coverrage",
   "icons": [
     {
@@ -27,7 +28,7 @@
     }
   ],
   "shortcuts": [],
-  "start_url": "https://newsjasoos.in",
+
   "background_color": "#fff",
   "display": "standalone",
   "scope": "/",
