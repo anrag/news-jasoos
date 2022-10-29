@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import HTMLEditor from "../components/Html";
 import { gql, useMutation } from "@apollo/client";
+import { message } from "antd";
 
 const Admin = () => {
   const ADD_ARTICLE = gql`
@@ -56,6 +57,9 @@ const Admin = () => {
         featureVideo: featuredImage,
         published: true,
       },
+    }).then((res) => {
+      message.destroy();
+      message.success("Published Successfully");
     });
   };
   const onImageChange = (e) => {
