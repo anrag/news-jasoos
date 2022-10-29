@@ -6,7 +6,10 @@ import Image from "next/image";
 import { Tag } from "antd";
 import moment from "moment";
 import Head from "next/head";
+import { useRouter } from "next/router";
 export default function Home() {
+  const router = useRouter();
+  console.log(router.pathname);
   const [newsArticle, setNewsArticle] = useState([]);
   useEffect(() => {
     fetchArticles();
@@ -45,35 +48,37 @@ export default function Home() {
   };
   return (
     <>
-      <Head>
-        <title>
-          News Jasoos - News Site about crime and bollywood news coverrage
-        </title>
-        <meta
-          name="description"
-          content="News Site about crime and bollywood news coverrage"
-        />
-        <meta
-          name="twitter:description"
-          content="News in Hindi ( प्रदेश समाचार) - Read latest MP Hindi news (मध्य प्रदेश न्यूज़), MP local news in Hindi, MP breaking news &amp; updates, MP news headlines with Hindi News Paper exclusively from News Jasoos."
-        />
-        <meta
-          name="title"
-          content="News Jasoos - hindi news, crime News, Bollywood Latest news in Hindi"
-        />
-        <meta
-          name="description"
-          content="News Jasoos - we have curated Hindi news in crime and Bollywood mainly written by Avneesh Chaudhary"
-        />
-        <meta
-          name="keywords"
-          content=" Breaking news,social media,bollywood news,movie review, hindi news, crime News, Bollywood Latest news in Hindi,मूवी रिव्यू, क्राइम न्यूज, बॉलीवुड, फिल्म,सिनेमा,स्पोर्ट्स,मर्डर, इकोनॉमिक्स, करेंट अफेयर्स,ब्रेकिंग न्यूज़, लैटेस्ट न्यूज, मुख्य समाचार"
-        />
-        <meta name="robots" content="index, follow" />
-        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="language" content="Hindi"></meta>
-        <link rel="icon" href="/pro.ico" />
-      </Head>
+      {router.pathname == "/" && (
+        <Head>
+          <meta
+            name="description"
+            content="News Site about crime and bollywood news coverrage"
+          />
+          <title>
+            News Jasoos - News Site about crime and bollywood news coverrage
+          </title>
+          <meta
+            name="twitter:description"
+            content="News in Hindi ( प्रदेश समाचार) - Read latest MP Hindi news (मध्य प्रदेश न्यूज़), MP local news in Hindi, MP breaking news &amp; updates, MP news headlines with Hindi News Paper exclusively from News Jasoos."
+          />
+          <meta
+            name="title"
+            content="News Jasoos - hindi news, crime News, Bollywood Latest news in Hindi"
+          />
+          <meta
+            name="description"
+            content="News Jasoos - we have curated Hindi news in crime and Bollywood mainly written by Avneesh Chaudhary"
+          />
+          <meta
+            name="keywords"
+            content=" Breaking news,social media,bollywood news,movie review, hindi news, crime News, Bollywood Latest news in Hindi,मूवी रिव्यू, क्राइम न्यूज, बॉलीवुड, फिल्म,सिनेमा,स्पोर्ट्स,मर्डर, इकोनॉमिक्स, करेंट अफेयर्स,ब्रेकिंग न्यूज़, लैटेस्ट न्यूज, मुख्य समाचार"
+          />
+          <meta name="robots" content="index, follow" />
+          <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+          <meta name="language" content="Hindi"></meta>
+          <link rel="icon" href="/pro.ico" />
+        </Head>
+      )}
       <div className="dark:bg-gray-800 sticky top-0 z-50">
         <aside>
           <SideNavbar />

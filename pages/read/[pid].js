@@ -35,6 +35,15 @@ const Post = () => {
       <Head>
         <title>News Jasoos - {detail?.title}</title>
         <meta name="description" content={detail?.title} />
+        <meta property="og:image" content={detail?.featureImage} />
+        <meta
+          property="og:url"
+          content={"https://newsjasoos.in/" + router.pathname}
+        />
+        <meta property="og:title" content={detail?.title?.substring(0, 35)} />
+        <meta property="og:description" content={detail?.title} />
+        <meta property="og:type" content="article" />
+        <meta property="og:locale" content="hi" />
       </Head>
       <div className="bg-white dark:bg-slate-800 flex flex-col">
         <div className="flex  sticky top-0 z-50">
