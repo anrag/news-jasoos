@@ -11,7 +11,11 @@ const nextConfig = {
 };
 
 module.exports = withPWA({
-  dest: "public",
+  pwa: {
+    dest: "public",
+    register: true,
+    skipWaiting: true,
+  },
 });
 
 module.exports = nextConfig;
