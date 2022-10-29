@@ -10,7 +10,6 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 export default function Home() {
   const router = useRouter();
-  console.log(router.pathname);
   const [newsArticle, setNewsArticle] = useState([]);
   useEffect(() => {
     fetchArticles();
@@ -52,6 +51,7 @@ export default function Home() {
       {router.pathname == "/" && (
         <Head>
           <link rel="manifest" href="/manifest.json" />
+
           <script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1621029292135466"

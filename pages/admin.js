@@ -41,12 +41,6 @@ const Admin = () => {
   };
 
   const onSubmit = () => {
-    console.log({
-      title,
-      shortDesc,
-      longDesc,
-      featuredImage,
-    });
     mutateFunction({
       variables: {
         title: title,
@@ -77,7 +71,6 @@ const Admin = () => {
       method: "post",
       data: formData,
     }).then((res) => {
-      console.log(res.data.Location);
       setFeaturedImage(res.data.Location);
     });
   };
