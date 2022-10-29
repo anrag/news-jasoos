@@ -42,7 +42,7 @@ export default function Home() {
         text: `${text.substring(
           0,
           400
-        )} \n\n\n पूरी कहानी पढ़ने के लिए 👇 क्लिक करें`,
+        )} \n\n पूरी कहानी पढ़ने के लिए 👇 क्लिक करें`,
       });
     }
   };
@@ -86,57 +86,64 @@ export default function Home() {
       </div>
 
       <div className="grid grid-flow-row gap-8 dark:bg-gray-800 dark:border-gray-800 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {newsArticle?.map((e, id) => (
-          <div
-            key={id}
-            className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
-          >
-            <a href={`/read/${e.id}`}>
-              {e?.featureImage && (
-                <Image
-                  className="rounded-t-lg"
-                  style={{ height: 200, width: "100%" }}
-                  height={100}
-                  width={"100%"}
-                  layout="responsive"
-                  src={e.featureImage}
-                  alt={e.title}
-                />
-              )}
-            </a>
-            <div className="p-5">
-              <Tag color="magenta">अवनीश चौधरी</Tag>
-              <Tag color="magenta">
-                {moment(new Date(parseInt(e?.createdAt)).toString()).format(
-                  "DD/MM/YY hh:mm A"
+        {newsArticle.length > 0 &&
+          newsArticle.map((e, id) => (
+            <div
+              key={id}
+              className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+            >
+              <a href={`https://newsjasoos.in/read/${e.id}`}>
+                {e?.featureImage && (
+                  <Image
+                    className="rounded-t-lg"
+                    style={{ height: 200, width: "100%" }}
+                    height={100}
+                    width={"100%"}
+                    layout="responsive"
+                    src={e.featureImage}
+                    alt={e.title}
+                  />
                 )}
-              </Tag>
-
-              <a href={`/read/${e.id}`}>
-                <h1 className="mb-2 text-l font-bold tracking-tight text-gray-900 dark:text-white">
-                  {e.title}
-                </h1>
               </a>
-              <p className="mb-3 font-normal text-gray-700 dark:text-white">
-                {e.shortArticle?.substring(0, 500)}
-              </p>
-              <div className="flex mt-4 space-x-3 md:mt-6 justify-around">
-                <a
-                  onClick={() => share(e.title, `read/${e.id}`, e.shortArticle)}
-                  className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  Share
+              <div className="p-5">
+                <Tag color="magenta">अवनीश चौधरी</Tag>
+                <Tag color="magenta">
+                  {moment(new Date(parseInt(e?.createdAt)).toString()).format(
+                    "DD/MM/YY hh:mm A"
+                  )}
+                </Tag>
+
+                <a href={`https://newsjasoos.in/read/${e.id}`}>
+                  <h1 className="mb-2 text-l font-bold tracking-tight text-gray-900 dark:text-white">
+                    {e.title}
+                  </h1>
                 </a>
-                <a
-                  href={`/read/${e.id}`}
-                  className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
-                >
-                  Read More
-                </a>
+                <p className="mb-3 font-normal text-gray-700 dark:text-white">
+                  {e.shortArticle?.substring(0, 500)}
+                </p>
+                <div className="flex mt-4 space-x-3 md:mt-6 justify-around">
+                  <a
+                    onClick={() =>
+                      share(
+                        e.title,
+                        `https://newsjasoos.in/read/${e.id}`,
+                        e.shortArticle
+                      )
+                    }
+                    className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    Share
+                  </a>
+                  <a
+                    href={`https://newsjasoos.in/read/${e.id}`}
+                    className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
+                  >
+                    Read More
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </>
   );
