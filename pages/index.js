@@ -58,7 +58,7 @@ export default function Home() {
             className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
           >
             <a href="#">
-              <Image
+              <img
                 className="rounded-t-lg"
                 src={e.featureImage}
                 alt={e.title}
