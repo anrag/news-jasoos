@@ -93,8 +93,8 @@ const Post = () => {
           <div>
             <div>
               <div className="flex p-2">
-                <Tag color="magenta">अवनीश चौधरी</Tag>
-                <Tag color="magenta">
+                <Tag color="gold">अवनीश चौधरी</Tag>
+                <Tag color="black">
                   {moment(
                     new Date(parseInt(detail?.createdAt)).toString()
                   ).format("DD/MM/YY hh:mm A")}
