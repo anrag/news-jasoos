@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-100;
+  }
+}
+.h1-heading {
+  font-size: 20px;
+  padding: 10px;
+  font-weight: 600;
+}
+
+.h2-normal {
+  font-size: 15px;
+  padding: 10px;
+  font-weight: 400;
+}
+.bottom-div {
+  bottom: 0;
+}
+
+h1 {
+  font-size: 18px;
+  align-content: flex-start;
+  padding: 15px;
+  font-weight: 800;
+}
+
+.article-text {
+  font-size: 15px;
+  align-content: flex-start;
+  padding: 15px;
+  font-weight: 200;
+  font-stretch: extra-expanded;
+}
+
+.bigger-text {
+  font-size: 35px;
+}
