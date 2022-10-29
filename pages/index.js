@@ -113,8 +113,8 @@ export default function Home() {
                 )}
               </Link>
               <div className="p-5">
-                <Tag color="magenta">अवनीश चौधरी</Tag>
-                <Tag color="magenta">
+                <Tag color="gold">अवनीश चौधरी</Tag>
+                <Tag color="black">
                   {moment(new Date(parseInt(e?.createdAt)).toString()).format(
                     "DD/MM/YY hh:mm A"
                   )}
