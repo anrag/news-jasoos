@@ -52,6 +52,11 @@ export default function Home() {
       {router.pathname == "/" && (
         <Head>
           <link rel="manifest" href="/manifest.json" />
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1621029292135466"
+            crossOrigin="anonymous"
+          ></script>
           <meta
             name="description"
             content="News Site about crime and bollywood news coverrage"

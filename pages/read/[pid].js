@@ -35,6 +35,11 @@ const Post = () => {
     <>
       <Head>
         <title>News Jasoos - {detail?.title}</title>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1621029292135466"
+          crossOrigin="anonymous"
+        ></script>
         <link rel="manifest" href="/manifest.json" />
         <meta name="description" content={detail?.title} />
         <meta property="og:image" content={detail?.featureImage} />
