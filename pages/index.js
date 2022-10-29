@@ -34,7 +34,10 @@ export default function Home() {
   const share = (title, url, text) => {
     if (navigator.share) {
       navigator.share({
-        title,
+        title: `${title.substring(
+          0,
+          400
+        )} पूरी कहानी पढ़ने के लिए 👇 क्लिक करें`,
         url,
         text,
       });
@@ -43,7 +46,9 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Responsive Side-Navbar</title>
+        <title>
+          News Jasoos - News Site about crime and bollywood news coverrage
+        </title>
         <meta
           name="description"
           content="News Site about crime and bollywood news coverrage"

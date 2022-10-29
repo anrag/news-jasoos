@@ -3,6 +3,7 @@ import { gql, useQuery } from "@apollo/client";
 import { useState } from "react";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import SideNavbar from "../../components/SideNavbar";
+import Image from "next/image";
 import Home from "..";
 import moment from "moment";
 import { Button, Tag } from "antd";
@@ -32,7 +33,7 @@ const Post = () => {
   return (
     <>
       <Head>
-        <title>{detail?.title}</title>
+        <title>News Jasoos - {detail?.title}</title>
         <meta name="description" content={detail?.title} />
       </Head>
       <div className="bg-white dark:bg-slate-800 flex flex-col">
@@ -57,7 +58,17 @@ const Post = () => {
           </div>
 
           <div>
-            <img src={data?.article.data[0]?.featureImage} />
+            {data?.article.data[0]?.featureImage && (
+              <Image
+                className="rounded-t-lg"
+                style={{ height: 200, width: "100%" }}
+                height={80}
+                width={"100%"}
+                layout="responsive"
+                src={data?.article.data[0]?.featureImage}
+                alt={detail?.title}
+              />
+            )}
           </div>
           <div>
             <div>
@@ -76,7 +87,17 @@ const Post = () => {
             />
           </div>
           <div>
-            <img src={data?.article.data[0]?.secondaryImage} />
+            {data?.article.data[0]?.secondaryImage && (
+              <Image
+                className="rounded-t-lg"
+                style={{ height: 200, width: "100%" }}
+                height={80}
+                width={"100%"}
+                layout="responsive"
+                src={data?.article.data[0]?.secondaryImage}
+                alt={detail?.title}
+              />
+            )}
           </div>
         </div>
       </div>
