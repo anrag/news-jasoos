@@ -1,4 +1,8 @@
+import { message } from "antd";
+
 export const share = async (title, url, text, imgUrl) => {
+  message.destroy();
+  message.info("✋ कृपया प्रतीक्षा करें ✋");
   // Convert dataUrl into blob using browser fetch API
   const blob = await (await fetch(imgUrl)).blob();
 
@@ -15,5 +19,6 @@ export const share = async (title, url, text, imgUrl) => {
          हमें इंस्टाग्राम पर फॉलो करें 🎉 - https://www.instagram.com/newsjasoos/ \n
         \n हमें ट्विटर पर फॉलो करें ❤️ - https://twitter.com/chaudhryAvneesh?lang=en `,
     });
+    message.destroy();
   }
 };
