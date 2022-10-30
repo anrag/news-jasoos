@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+import moment from "moment";
 import React from "react";
 import client from "./api/graphql-client";
 
@@ -10,10 +11,14 @@ function createSitemap(response) {
   ${
     response.length > 0 &&
     response
-      .map(({ id }, index) => {
+      .map(({ id, createdAt }, index) => {
         return `
           <url>
               <loc>${`${EXTERNAL_DATA_URL}/${id}`}</loc>
+              <lastmod>${moment(
+                new Date(parseInt(createdAt)).toString()
+              ).format("DD/MM/YY hh:mm A")}</lastmod>
+              <changefreq>monthly</changefreq>
           </url>
       `;
       })
@@ -39,7 +44,7 @@ class Sitemap extends React.Component {
     var raw = JSON.stringify({
       variables: {},
       query:
-        "{\n  article {\n    count\n    data {\n      id\n      title\n          }\n     }\n}",
+        "{\n  article {\n    count\n    data {\n      id\n      title\n  createdAt\n        }\n     }\n}",
     });
 
     var requestOptions = {
