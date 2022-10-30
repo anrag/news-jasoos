@@ -6,9 +6,11 @@ import SideNavbar from "../../components/SideNavbar";
 import Image from "next/image";
 import Home from "..";
 import moment from "moment";
-import { Button, Tag } from "antd";
+import { Button, Divider, Tag } from "antd";
 import Head from "next/head";
 import Link from "next/link";
+import { ShareAltOutlined } from "@ant-design/icons";
+import { share } from "../../components/Share";
 const qdata = gql`
   query article($id: ID!) {
     article(query: { id: $id }) {
@@ -162,10 +164,30 @@ const Post = () => {
                     />
                   )}
                 </div> */}
+                <div className="flex">
+                  <Button
+                    size="large"
+                    onClick={() =>
+                      share(
+                        detail.title,
+                        `https://newsjasoos.in/read/${detail.id}`,
+                        detail.shortArticle,
+                        detail.featureImage
+                      )
+                    }
+                    style={{ borderRadius: 10, fontSize: 18 }}
+                    icon={<ShareAltOutlined />}
+                    type="primary"
+                    block
+                  >
+                    Share
+                  </Button>
+                </div>
               </div>
             </div>
-            <div className="p-10 text-center bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-100">
-              <p className="bigger-text">और पड़े</p>
+            <Divider />
+            <div className="p-2 text-center bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-100">
+              <p className="bigger-text">👇 और पड़े 👇</p>
             </div>
           </>
         )}

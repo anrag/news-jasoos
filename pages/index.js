@@ -8,6 +8,7 @@ import moment from "moment";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { share } from "../components/Share";
 export default function Home() {
   const router = useRouter();
   const [newsArticle, setNewsArticle] = useState([]);
@@ -34,18 +35,6 @@ export default function Home() {
     setNewsArticle(data.article.data);
   };
 
-  const share = (title, url, text) => {
-    if (navigator.share) {
-      navigator.share({
-        title: `${title}`,
-        url,
-        text: `${text.substring(0, 400)} \n\n \n 
-         हमें इंस्टाग्राम पर फॉलो करें 🎉 - https://www.instagram.com/newsjasoos/ \n
-        \n हमें ट्विटर पर फॉलो करें ❤️ - https://twitter.com/chaudhryAvneesh?lang=en \n
-        पूरी कहानी पढ़ने के लिए 👇 क्लिक करें`,
-      });
-    }
-  };
   return (
     <>
       {router.pathname == "/" && (
@@ -143,7 +132,8 @@ export default function Home() {
                       share(
                         e.title,
                         `https://newsjasoos.in/read/${e.id}`,
-                        e.shortArticle
+                        e.shortArticle,
+                        e.featureImage
                       )
                     }
                     className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
