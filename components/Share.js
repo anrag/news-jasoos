@@ -2,7 +2,7 @@ export const share = (title, url, text, imgUrl) => {
   if (navigator.share) {
     navigator.share({
       title: `${title}`,
-      files: [imgUrl],
+      //   files: [imgUrl],
       url: url,
       text: `${text.substring(0, 400)} \n\n
       \n
