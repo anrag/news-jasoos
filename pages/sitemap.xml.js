@@ -7,15 +7,18 @@ const EXTERNAL_DATA_URL = "https://newsjasoos.in/read";
 function createSitemap(response) {
   return `<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${response
-    .map(({ id }, index) => {
-      return `
+  ${
+    response.length > 0 &&
+    response
+      .map(({ id }, index) => {
+        return `
           <url>
               <loc>${`${EXTERNAL_DATA_URL}/${id}`}</loc>
           </url>
       `;
-    })
-    .join("")}
+      })
+      .join("")
+  }
   </urlset>`;
 }
 
@@ -45,13 +48,18 @@ class Sitemap extends React.Component {
       body: raw,
       redirect: "follow",
     };
-
-    let dat = await fetch("https://dailycrimenews.in/", requestOptions);
-    dat = await dat.json();
-    dat = dat.data.article.data;
-    res?.setHeader("Content-Type", "text/xml");
-    res?.write(createSitemap(dat));
-    res?.end();
+    try {
+      let dat = await fetch("https://dailycrimenews.in/", requestOptions);
+      dat = await dat.json();
+      dat = dat?.data?.article?.data;
+      res?.setHeader("Content-Type", "text/xml");
+      res?.write(createSitemap(dat));
+      res?.end();
+    } catch (error) {
+      res?.setHeader("Content-Type", "text/xml");
+      res?.write(createSitemap([]));
+      res.end();
+    }
   }
 }
 
