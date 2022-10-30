@@ -1,8 +1,13 @@
-export const share = (title, url, text, imgUrl) => {
+export const share = async (title, url, text, imgUrl) => {
+  // Convert dataUrl into blob using browser fetch API
+  const blob = await (await fetch(imgUrl)).blob();
+
+  // Create file form the blob
+  const image = new File([blob], "canvas.png", { type: blob.type });
   if (navigator.share) {
     navigator.share({
       title: `${title}`,
-      //   files: [imgUrl],
+      files: [image],
       url: url,
       text: `${text.substring(0, 400)} \n\n
       \n
