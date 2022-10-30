@@ -17,7 +17,7 @@ function createSitemap(response) {
               <loc>${`${EXTERNAL_DATA_URL}/${id}`}</loc>
               <lastmod>${moment(
                 new Date(parseInt(createdAt)).toString()
-              ).format("DD/MM/YY hh:mm A")}</lastmod>
+              ).format("YYYY-MM-DDThh:mm: ssTZD")}</lastmod>
               <changefreq>monthly</changefreq>
           </url>
       `;
