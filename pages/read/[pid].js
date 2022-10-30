@@ -48,11 +48,11 @@ const Post = () => {
           description: detail?.shortArticle,
           images: [
             {
-              url: detail.featureImage,
-              alt: detail.title,
+              url: detail?.featureImage,
+              alt: detail?.title,
             },
           ],
-          siteName: `News Jasoos - ${e.title}`,
+          siteName: `News Jasoos - ${e?.title}`,
         }}
       />
       {/* <Head>
