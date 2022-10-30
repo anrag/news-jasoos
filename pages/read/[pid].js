@@ -52,7 +52,7 @@ const Post = () => {
               alt: detail?.title,
             },
           ],
-          siteName: `News Jasoos - ${e?.title}`,
+          siteName: `News Jasoos - ${detail?.title}`,
         }}
       />
       {/* <Head>
