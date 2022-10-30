@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { gql, useQuery } from "@apollo/client";
 import { useState } from "react";
-import { ArrowLeftOutlined } from "@ant-design/icons";
+import { NextSeo } from "next-seo";
 import SideNavbar from "../../components/SideNavbar";
 import Image from "next/image";
 import Home from "..";
@@ -13,8 +13,10 @@ const qdata = gql`
   query article($id: ID!) {
     article(query: { id: $id }) {
       data {
+        id
         title
         featureImage
+        shortArticle
         longArticle
         secondaryImage
         createdAt
@@ -24,7 +26,8 @@ const qdata = gql`
 `;
 const Post = () => {
   const router = useRouter();
-  const { pid } = router.query;
+  let { pid } = router.query;
+  pid = pid.split("---")[1];
   const { data } = useQuery(qdata, {
     variables: {
       id: pid,
@@ -33,7 +36,23 @@ const Post = () => {
   let detail = data?.article.data[0];
   return (
     <>
-      <Head>
+      <NextSeo
+        title={detail?.title}
+        description={detail?.shortArticle}
+        openGraph={{
+          url: `https://newsjasoos.in/read/${pid}`,
+          title: detail?.title,
+          description: detail?.shortArticle,
+          images: [
+            {
+              url: detail.featureImage,
+              alt: detail.title,
+            },
+          ],
+          siteName: `News Jasoos - ${e.title}`,
+        }}
+      />
+      {/* <Head>
         <title>News Jasoos - {detail?.title}</title>
         <script
           async
@@ -53,11 +72,12 @@ const Post = () => {
         <meta property="og:description" content={detail?.title} />
         <meta property="og:type" content="article" />
         <meta property="og:locale" content="hi" />
-      </Head>
+      </Head> */}
+
       <div className="bg-white dark:bg-slate-800 flex flex-col">
         <div className="flex  sticky top-0 z-50">
           <div className="basis-1/2 p-5">
-            <Link href={"/"} passHref>
+            <Link href={"/"} des passHref>
               <Button
                 style={{ borderRadius: 10 }}
                 type="primary"
