@@ -21,4 +21,21 @@ const fetchArticles = async () => {
   return data.article.data;
 };
 
-export default fetchArticles;
+const fetchCategory = async () => {
+  const { data } = await client.query({
+    query: gql`
+      query {
+        org {
+          count
+          data {
+            id
+            name
+          }
+        }
+      }
+    `,
+  });
+  return data.org.data;
+};
+
+export { fetchArticles, fetchCategory };

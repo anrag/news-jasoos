@@ -1,12 +1,20 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HTMLEditor from "../components/Html";
 import { gql, useMutation } from "@apollo/client";
-import { message } from "antd";
+import { message, Select } from "antd";
 import { useRouter } from "next/router";
 import Image from "next/image";
-
+import { fetchCategory } from "../utils/utils";
+const { Option } = Select;
 const Admin = () => {
+  const [category, setCategory] = useState([]);
+  useEffect(() => {
+    fetchCategory().then((res) => {
+      console.log(res);
+      setCategory(res);
+    });
+  }, []);
   const router = useRouter();
   const ADD_ARTICLE = gql`
     # Increments a back-end counter and gets its resulting value
@@ -23,6 +31,7 @@ const Admin = () => {
         input: {
           title: $title
           longArticle: $longArticle
+          category: $remoteCategory
           featureImage: $featureImage
           secondaryImage: $secondaryImage
           shortArticle: $shortArticle
@@ -36,6 +45,7 @@ const Admin = () => {
   `;
   const [mutateFunction, { data, loading, error }] = useMutation(ADD_ARTICLE);
   const [title, setTitle] = useState(null);
+  const [remoteCategory, setRemoteCategory] = useState(null);
   const [shortDesc, setShortDesc] = useState(null);
   const [longDesc, setLongDesc] = useState(null);
   const [featuredImage, setFeaturedImage] = useState(null);
@@ -48,6 +58,7 @@ const Admin = () => {
       variables: {
         title: title,
         longArticle: longDesc,
+        category: remoteCategory,
         featureImage: featuredImage,
         secondaryImage: featuredImage,
         shortArticle: shortDesc,
@@ -124,6 +135,23 @@ const Admin = () => {
           <div>
             <input type="file" accept="image/*" onChange={onImageChange} />
           </div>
+          <div className="flex p-1 items-center justify-center">
+            <h1 style={{ paddingRight: 10 }}>Select Category - </h1>
+            <div>
+              <Select
+                defaultValue="Select Category"
+                style={{ width: 220 }}
+                onChange={(e) => setRemoteCategory(e)}
+              >
+                {category.length > 0 &&
+                  category.map((e, id) => (
+                    <Option key={e.id} value={e.name}>
+                      {e.name}
+                    </Option>
+                  ))}
+              </Select>
+            </div>
+          </div>
 
           <div className="flex items-center justify-between">
             <div className="flex items-center">
@@ -138,7 +166,7 @@ const Admin = () => {
             </div>
           </div>
 
-          {featuredImage && (
+          {featuredImage && remoteCategory && (
             <div>
               <button
                 onClick={onSubmit}
