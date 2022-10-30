@@ -112,8 +112,8 @@ export default function Home() {
                 {e?.featureImage && (
                   <Image
                     className="rounded-t-lg"
-                    style={{ height: 200, width: "100%" }}
-                    height={100}
+                    style={{ height: "25%", width: "100%" }}
+                    height={"60%"}
                     width={"100%"}
                     layout="responsive"
                     src={e.featureImage}
