@@ -27,7 +27,10 @@ const qdata = gql`
 const Post = () => {
   const router = useRouter();
   let { pid } = router.query;
-  pid = pid.split("---")[1];
+  if (pid) {
+    pid = pid?.split("---")[1];
+  }
+
   const { data } = useQuery(qdata, {
     variables: {
       id: pid,
