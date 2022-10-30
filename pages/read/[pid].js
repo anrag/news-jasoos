@@ -164,7 +164,7 @@ const Post = () => {
                     />
                   )}
                 </div> */}
-                <div className="flex">
+                <div className="bg-white dark:bg-slate-800 flex">
                   <Button
                     size="large"
                     onClick={() =>
@@ -185,8 +185,9 @@ const Post = () => {
                 </div>
               </div>
             </div>
-            <Divider />
+
             <div className="p-2 text-center bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-100">
+              <Divider className="bg-white dark:bg-slate-800" />
               <p className="bigger-text">👇 और पड़े 👇</p>
             </div>
           </>

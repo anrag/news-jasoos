@@ -3,6 +3,7 @@ export const share = (title, url, text, imgUrl) => {
     navigator.share({
       title: `${title}`,
       files: [imgUrl],
+      url: url,
       text: `${text.substring(0, 400)} \n\n
       \n
         पूरी कहानी पढ़ने के लिए 👇 क्लिक करें \n ${url} \n\n
