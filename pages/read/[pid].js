@@ -55,30 +55,26 @@ const Post = () => {
           }}
         />
       )}
-      {/* <Head>
+      <Head>
         <title>News Jasoos - {detail?.title}</title>
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1621029292135466"
           crossOrigin="anonymous"
         ></script>
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="description" content={detail?.title} />
-        <meta property="og:image" content={detail?.featureImage} />
-        {detail?.id && (
-          <meta
-            property="og:url"
-            content={"https://newsjasoos.in/" + detail?.id}
-          />
-        )}
-        <meta property="og:title" content={detail?.title?.substring(0, 35)} />
-        <meta property="og:description" content={detail?.title} />
-        <meta property="og:type" content="article" />
-        <meta property="og:locale" content="hi" />
-      </Head> */}
+        <script
+          async
+          custom-element="amp-auto-ads"
+          src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"
+        ></script>
+      </Head>
       <Suspense fallback={<p>Loading feed...</p>}>
         {detail?.title === null ? (
           <div className="grid h-screen place-items-center">
+            <amp-auto-ads
+              type="adsense"
+              data-ad-client="ca-pub-1621029292135466"
+            ></amp-auto-ads>
             <button
               type="button"
               style={{

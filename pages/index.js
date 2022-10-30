@@ -84,9 +84,18 @@ export default function Home() {
           <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
           <meta name="language" content="Hindi"></meta>
           <link rel="icon" href="/pro.ico" />
+          <script
+            async
+            custom-element="amp-auto-ads"
+            src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"
+          ></script>
         </Head>
       )}
       <div className="dark:bg-gray-800 sticky top-0 z-50">
+        <amp-auto-ads
+          type="adsense"
+          data-ad-client="ca-pub-1621029292135466"
+        ></amp-auto-ads>
         <aside>
           <SideNavbar />
         </aside>
