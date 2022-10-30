@@ -99,12 +99,7 @@ export default function Home() {
               key={id}
               className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
             >
-              <Link
-                href={`https://newsjasoos.in/read/${e.title.replace(
-                  " ",
-                  "-"
-                )}---${e.id}`}
-              >
+              <Link href={`https://newsjasoos.in/read/${e.id}`}>
                 {e?.featureImage && (
                   <Image
                     className="rounded-t-lg"
@@ -125,13 +120,7 @@ export default function Home() {
                   )}
                 </Tag>
 
-                <Link
-                  passHref
-                  href={`https://newsjasoos.in/read/${e.title.replace(
-                    " ",
-                    "-"
-                  )}---${e.id}`}
-                >
+                <Link passHref href={`https://newsjasoos.in/read/${e.id}`}>
                   <h1 className="mb-2 text-l font-bold tracking-tight text-gray-900 dark:text-white">
                     {e.title}
                   </h1>
@@ -144,10 +133,7 @@ export default function Home() {
                     onClick={() =>
                       share(
                         e.title,
-                        `https://newsjasoos.in/read/${e.title.replace(
-                          " ",
-                          "-"
-                        )}---${e.id}`,
+                        `https://newsjasoos.in/read/${e.id}`,
                         e.shortArticle
                       )
                     }
@@ -156,10 +142,7 @@ export default function Home() {
                     Share
                   </a>
                   <Link
-                    href={`https://newsjasoos.in/read/${e.title.replace(
-                      " ",
-                      "-"
-                    )}---${e.id}`}
+                    href={`https://newsjasoos.in/read/${e.id}`}
                     className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
                   >
                     Read More
