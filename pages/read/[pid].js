@@ -36,22 +36,25 @@ const Post = () => {
   let detail = data?.article.data[0];
   return (
     <>
-      <NextSeo
-        title={detail?.title}
-        description={detail?.shortArticle}
-        openGraph={{
-          url: `https://newsjasoos.in/read/${pid}`,
-          title: detail?.title,
-          description: detail?.shortArticle,
-          images: [
-            {
-              url: detail?.featureImage,
-              alt: detail?.title,
-            },
-          ],
-          siteName: `News Jasoos - ${detail?.title}`,
-        }}
-      />
+      {detail?.title && (
+        <NextSeo
+          title={detail?.title}
+          description={detail?.shortArticle}
+          openGraph={{
+            url: `https://newsjasoos.in/read/${pid}`,
+            title: detail?.title,
+            description: detail?.shortArticle,
+            locale: "hi",
+            images: [
+              {
+                url: detail?.featureImage,
+                alt: detail?.title,
+              },
+            ],
+            siteName: `News Jasoos - ${detail?.title}`,
+          }}
+        />
+      )}
       {/* <Head>
         <title>News Jasoos - {detail?.title}</title>
         <script
