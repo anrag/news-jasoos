@@ -69,7 +69,7 @@ const Post = () => {
         ></script>
       </Head>
       <Suspense fallback={<p>Loading feed...</p>}>
-        {detail?.title === null ? (
+        {!detail ? (
           <div className="grid h-screen place-items-center">
             <amp-auto-ads
               type="adsense"
@@ -166,7 +166,7 @@ const Post = () => {
             </div>
             <div className="p-10 text-center bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-100">
               <p className="bigger-text">और पड़े</p>
-            </div>{" "}
+            </div>
           </>
         )}
       </Suspense>
