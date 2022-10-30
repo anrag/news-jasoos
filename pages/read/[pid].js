@@ -148,7 +148,7 @@ const Post = () => {
                     dangerouslySetInnerHTML={{ __html: detail?.longArticle }}
                   />
                 </div>
-                <div>
+                {/* <div>
                   {data?.article.data[0]?.secondaryImage && (
                     <Image
                       className="rounded-t-lg"
@@ -161,7 +161,7 @@ const Post = () => {
                       alt={detail?.title}
                     />
                   )}
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="p-10 text-center bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-100">
