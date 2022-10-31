@@ -9,6 +9,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { share } from "../components/Share";
+import Script from "next/script";
 export default function Home(props) {
   const router = useRouter();
   const [newsArticle, setNewsArticle] = useState([]);
@@ -38,6 +39,10 @@ export default function Home(props) {
 
   return (
     <>
+      <Script
+        type="text/javascript"
+        src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-636029ee664af571"
+      ></Script>
       {router.pathname == "/" && (
         <Head>
           <link rel="manifest" href="/manifest.json" />
