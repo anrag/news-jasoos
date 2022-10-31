@@ -104,14 +104,14 @@ const Post = () => {
               <div className="flex  sticky top-0 z-50">
                 <div className="basis-1/2 p-5">
                   <Link href={"/"} des passHref>
-                    <Button
-                      style={{ borderRadius: 10 }}
-                      type="primary"
-                      title="Back"
-                      href="/"
-                    >
-                      Back
-                    </Button>
+                    <button className="relative px-6 py-2 group">
+                      <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-indigo-700 group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                      <span className="absolute inset-0 w-full h-full bg-white border-2 border-indigo-700 group-hover:bg-indigo-700"></span>
+                      <span className="relative text-indigo-700 group-hover:text-indigo-100 ">
+                        {" "}
+                        <b>BACK</b>
+                      </span>
+                    </button>
                   </Link>
                 </div>
                 <div>
