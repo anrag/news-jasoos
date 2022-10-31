@@ -81,7 +81,7 @@ const Admin = () => {
     const url = "https://my.usacricket.org/fileupload/uploadImage";
     const formData = new FormData();
     formData.append("productimage", e?.target?.files[0]);
-    formData.append("name", new Date().getTime());
+    formData.append("name", localSlug?.replaceAll(" ", "-"));
     const config = {
       headers: {
         "content-type": "multipart/form-data",
@@ -139,9 +139,11 @@ const Admin = () => {
             <HTMLEditor changeContent={changeContent} />
           </div>
 
-          <div>
-            <input type="file" accept="image/*" onChange={onImageChange} />
-          </div>
+          {localSlug?.length > 10 && (
+            <div>
+              <input type="file" accept="image/*" onChange={onImageChange} />
+            </div>
+          )}
           <div className="flex p-1 items-center justify-center">
             <h1 style={{ paddingRight: 10 }}>Select Category - </h1>
             <div>

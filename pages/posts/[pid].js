@@ -38,27 +38,30 @@ const Post = () => {
   let detail = data?.article.data[0];
   return (
     <>
-      {detail?.title && (
+      {
         <NextSeo
-          title={detail?.title}
+          title={!detail?.title ? pid?.replaceAll("-", " ") : detail?.title}
           description={detail?.shortArticle}
           openGraph={{
             url: `https://newsjasoos.in/posts/${pid}`,
-            title: detail?.title,
-            description: detail?.shortArticle,
+            title: !detail?.title ? pid?.replaceAll("-", " ") : detail?.title,
+            description: pid?.replaceAll("-", " ") || detail?.shortArticle,
             locale: "hi",
             images: [
               {
-                url: detail?.featureImage,
-                alt: detail?.title,
+                url:
+                  `https://my-usa-cricket.s3.amazonaws.com/profilePictures/${pid}` ||
+                  detail?.featureImage,
+                alt: !detail?.title ? pid?.replaceAll("-", " ") : detail?.title,
               },
             ],
-            siteName: `News Jasoos - ${detail?.title}`,
+            siteName: `News Jasoos - ${
+              !detail?.title ? pid?.replaceAll("-", " ") : detail?.title
+            }`,
           }}
         />
-      )}
+      }
       <Head>
-        <title>News Jasoos - {detail?.title}</title>
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1621029292135466"
