@@ -91,12 +91,12 @@ export default function Home(props) {
         </aside>
       </div>
 
-      <div className="shadow-indigo-500/40  grid grid-flow-row gap-8 dark:bg-gray-800 dark:border-gray-800 text-neutral-600 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+      <div className="border-1  grid grid-flow-row gap-8 dark:bg-gray-900 dark:border-gray-800 text-neutral-600 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3  py-10 px-1">
         {newsArticle.length > 0 &&
           newsArticle.map((e, id) => (
             <div
               key={id}
-              className="flex-column content-center grid-cols-2  p-0 rounded-lg shadow-lg bg-white dark:bg-gray-800 max-w-sm"
+              className="shadow-2xl flex-column content-center grid-cols-2  p-0 rounded-lg shadow-lg bg-white dark:bg-gray-800 max-w-sm"
             >
               <div key={id} className="rounded-lg">
                 <Link href={`/posts/${e.slug}`}>

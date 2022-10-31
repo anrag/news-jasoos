@@ -118,7 +118,7 @@ const Post = () => {
                   <SideNavbar />
                 </div>
               </div>
-              <article className="content-center prose lg:prose-sm self-center">
+              <article className="rounded w-1/2 content-center prose lg:prose-sm self-center shadow-2xl shadow-lg bg-white dark:bg-gray-900 p-1">
                 <div className="content-center text-black dark:text-slate-100">
                   <h1 className="text-black dark:text-slate-100">
                     {detail?.title}
