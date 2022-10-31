@@ -18,6 +18,7 @@ const qdata = gql`
         id
         title
         featureImage
+        slug
         shortArticle
         longArticle
         secondaryImage
@@ -173,7 +174,7 @@ const Post = () => {
                     onClick={() =>
                       share(
                         detail.title,
-                        `https://newsjasoos.in/posts/${detail.id}`,
+                        `https://newsjasoos.in/posts/${detail.slug}`,
                         detail.shortArticle,
                         detail.featureImage
                       )

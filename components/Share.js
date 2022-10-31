@@ -2,7 +2,7 @@ import { message } from "antd";
 
 export const share = async (title, url, text, imgUrl) => {
   message.destroy();
-  message.info("✋ कृपया प्रतीक्षा करें ✋");
+  message.loading("✋ कृपया प्रतीक्षा करें ✋");
   // Convert dataUrl into blob using browser fetch API
   const blob = await (await fetch(imgUrl)).blob();
 
@@ -12,12 +12,10 @@ export const share = async (title, url, text, imgUrl) => {
     navigator.share({
       title: `${title}`,
       files: [image],
-      url: url,
+      url: `http://newsjasoos.in/${url}`,
       text: `${text.substring(0, 400)} \n\n
       \n
-        पूरी कहानी पढ़ने के लिए 👇 क्लिक करें \n ${url} \n\n
-         हमें इंस्टाग्राम पर फॉलो करें 🎉 - https://www.instagram.com/newsjasoos/ \n
-        \n हमें ट्विटर पर फॉलो करें ❤️ - https://twitter.com/chaudhryAvneesh?lang=en `,
+        पूरी कहानी पढ़ने के लिए 👇 क्लिक करें \n ${url} \n`,
     });
     message.destroy();
   }

@@ -134,7 +134,7 @@ export default function Home(props) {
                     onClick={() =>
                       share(
                         e.title,
-                        `/posts/${e.id}`,
+                        `/posts/${e.slug}`,
                         e.shortArticle,
                         e.featureImage
                       )
@@ -150,9 +150,12 @@ export default function Home(props) {
                   >
                     <Button
                       type="ghost"
-                      style={{ fontWeight: 700, color: "#000" }}
+                      className="text-black dark:text-slate-100"
+                      style={{ fontWeight: 700 }}
                     >
-                      Read Full News
+                      <div className="text-black dark:text-slate-100">
+                        Read Full News
+                      </div>
                     </Button>
                   </Link>
                 </div>

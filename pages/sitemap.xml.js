@@ -1,9 +1,7 @@
-import { gql } from "@apollo/client";
 import moment from "moment";
 import React from "react";
-import client from "./api/graphql-client";
 
-const EXTERNAL_DATA_URL = "https://newsjasoos.in/read";
+const EXTERNAL_DATA_URL = "https://newsjasoos.in/posts";
 
 function createSitemap(response) {
   return `<?xml version="1.0" encoding="UTF-8"?>
