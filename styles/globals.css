@@ -40,3 +40,16 @@ h1 {
 .bigger-text {
   font-size: 35px;
 }
+
+.glow-button {
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 0 5px 15px rgba(107, 104, 109, 0.4);
+}
+
+h1,
+h2,
+h3,
+p,
+strong {
+  @apply text-gray-900 dark:text-white !important;
+}
