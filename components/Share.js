@@ -12,10 +12,9 @@ export const share = async (title, url, text, imgUrl) => {
     navigator.share({
       title: `${title}`,
       files: [image],
-      url: `http://newsjasoos.in/${url}`,
-      text: `${text.substring(0, 400)} \n\n
-      \n
-        पूरी कहानी पढ़ने के लिए 👇 क्लिक करें \n  \n`,
+      url: `https://newsjasoos.in${url}`,
+      text: `${text.substring(0, 400)} \n
+        पूरी कहानी पढ़ने के लिए 👇 क्लिक करें \n`,
     });
     message.destroy();
   }
