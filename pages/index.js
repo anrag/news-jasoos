@@ -9,7 +9,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { share } from "../components/Share";
-export default function Home() {
+export default function Home(props) {
   const router = useRouter();
   const [newsArticle, setNewsArticle] = useState([]);
   useEffect(() => {
@@ -98,7 +98,7 @@ export default function Home() {
               key={id}
               className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
             >
-              <Link href={`https://newsjasoos.in/read/${e.slug}`}>
+              <Link href={`/posts/${e.slug}`}>
                 {e?.featureImage && (
                   <Image
                     className="rounded-t-lg"
@@ -121,7 +121,7 @@ export default function Home() {
                   )}
                 </Tag>
 
-                <Link passHref href={`https://newsjasoos.in/read/${e.id}`}>
+                <Link passHref href={`/posts/${e.id}`}>
                   <h1 className="mb-2 text-l font-bold tracking-tight text-gray-900 dark:text-white">
                     {e.title}
                   </h1>
@@ -134,7 +134,7 @@ export default function Home() {
                     onClick={() =>
                       share(
                         e.title,
-                        `https://newsjasoos.in/read/${e.id}`,
+                        `/posts/${e.id}`,
                         e.shortArticle,
                         e.featureImage
                       )
@@ -144,7 +144,7 @@ export default function Home() {
                     Share
                   </a>
                   <Link
-                    href={`/read/${e.slug}`}
+                    href={`/posts/${e.slug}`}
                     passHref
                     className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
                   >
@@ -152,7 +152,7 @@ export default function Home() {
                       type="ghost"
                       style={{ fontWeight: 700, color: "#000" }}
                     >
-                      Read More
+                      Read Full News
                     </Button>
                   </Link>
                 </div>

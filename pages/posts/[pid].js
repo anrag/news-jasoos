@@ -194,7 +194,7 @@ const Post = () => {
         )}
       </Suspense>
       <Suspense fallback={<p>Loading..</p>}>
-        <Home base="read" />
+        <Home base="posts" />
       </Suspense>
     </>
   );
