@@ -2,6 +2,10 @@
 const withPWA = require("next-pwa");
 const nextConfig = {
   reactStrictMode: false,
+  dest: "public",
+  swSrc: "service-worker.js",
+  register: true,
+  skipWaiting: true,
   distDir: "build",
   images: {
     domains: ["my-usa-cricket.s3.amazonaws.com", "images.bhaskarassets.com"],
