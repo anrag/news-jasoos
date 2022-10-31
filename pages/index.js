@@ -91,26 +91,28 @@ export default function Home(props) {
         </aside>
       </div>
 
-      <div className="grid grid-flow-row gap-8 dark:bg-gray-800 dark:border-gray-800 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="shadow-indigo-500/40  grid grid-flow-row gap-8 dark:bg-gray-800 dark:border-gray-800 text-neutral-600 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
         {newsArticle.length > 0 &&
           newsArticle.map((e, id) => (
             <div
               key={id}
-              className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+              className="flex-column content-center grid-cols-2  p-0 rounded-lg shadow-lg bg-white dark:bg-gray-800 max-w-sm"
             >
-              <Link href={`/posts/${e.slug}`}>
-                {e?.featureImage && (
-                  <Image
-                    className="rounded-t-lg"
-                    style={{ height: "25%", width: "100%" }}
-                    height={"60%"}
-                    width={"100%"}
-                    layout="responsive"
-                    src={e.featureImage}
-                    alt={e.title}
-                  />
-                )}
-              </Link>
+              <div key={id} className="rounded-lg">
+                <Link href={`/posts/${e.slug}`}>
+                  {e?.featureImage && (
+                    <Image
+                      className="rounded-t-lg"
+                      style={{ height: "25%", width: "100%" }}
+                      height={"60%"}
+                      width={"100%"}
+                      layout="responsive"
+                      src={e.featureImage}
+                      alt={e.title}
+                    />
+                  )}
+                </Link>
+              </div>
               <div className="p-5">
                 <Tag color="red" style={{ fontWeight: 900 }}>
                   अवनीश चौधरी
@@ -122,15 +124,16 @@ export default function Home(props) {
                 </Tag>
 
                 <Link passHref href={`/posts/${e.id}`}>
-                  <h1 className="mb-2 text-l font-bold tracking-tight text-gray-900 dark:text-white">
+                  <h1 className="mb-2 text-m  font-bold tracking-tight text-gray-900 dark:text-white">
                     {e.title}
                   </h1>
                 </Link>
-                <p className="mb-3 font-normal text-gray-700 dark:text-white">
+                <p className="mb-3  black dark:text-white">
                   {e.shortArticle?.substring(0, 500)}
                 </p>
-
-                <div className="flex mt-4 space-x-3 md:mt-6 justify-around">
+              </div>
+              <div className="grid grid-cols-2 gap-1 mx-10 mb-10">
+                <div>
                   <button
                     onClick={() =>
                       share(
@@ -148,7 +151,8 @@ export default function Home(props) {
                       <b>SHARE</b>
                     </span>
                   </button>
-
+                </div>
+                <div>
                   <Link
                     href={`/posts/${e.slug}`}
                     passHref
@@ -159,7 +163,7 @@ export default function Home(props) {
                       <span className="absolute inset-0 w-full h-full bg-white border-2 border-indigo-700 group-hover:bg-indigo-700"></span>
                       <span className="relative text-indigo-700 group-hover:text-indigo-100 ">
                         {" "}
-                        <b>READ FULL STORY</b>
+                        <b>READ STORY</b>
                       </span>
                     </button>
                   </Link>

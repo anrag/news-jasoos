@@ -100,7 +100,7 @@ const Post = () => {
           </div>
         ) : (
           <>
-            <div className="bg-white dark:bg-slate-800 flex flex-col">
+            <div className="bg-white dark:bg-slate-800 flex content-center flex-col">
               <div className="flex  sticky top-0 z-50">
                 <div className="basis-1/2 p-5">
                   <Link href={"/"} des passHref>
@@ -118,7 +118,7 @@ const Post = () => {
                   <SideNavbar />
                 </div>
               </div>
-              <div className="place-items-center">
+              <article className="content-center prose lg:prose-sm self-center">
                 <div className="content-center text-black dark:text-slate-100">
                   <h1 className="text-black dark:text-slate-100">
                     {detail?.title}
@@ -187,7 +187,7 @@ const Post = () => {
                     Share
                   </Button>
                 </div>
-              </div>
+              </article>
             </div>
 
             <div className="p-2 text-center bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-100">

@@ -14,7 +14,7 @@ export const share = async (title, url, text, imgUrl) => {
       files: [image],
       url: `https://newsjasoos.in${url}`,
       text: `${text.substring(0, 400)} \n
-        पूरी कहानी पढ़ने के लिए 👇 क्लिक करें \n`,
+        पूरी खबर पढ़ने के लिए 👇 क्लिक करें \n`,
     });
     message.destroy();
   }
