@@ -129,8 +129,9 @@ export default function Home(props) {
                 <p className="mb-3 font-normal text-gray-700 dark:text-white">
                   {e.shortArticle?.substring(0, 500)}
                 </p>
+
                 <div className="flex mt-4 space-x-3 md:mt-6 justify-around">
-                  <a
+                  <button
                     onClick={() =>
                       share(
                         e.title,
@@ -139,24 +140,28 @@ export default function Home(props) {
                         e.featureImage
                       )
                     }
-                    className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className="relative px-6 py-2 group"
                   >
-                    Share
-                  </a>
+                    <span className="absolute inset-0 w-full h-full transition duration-300 ease-out transform translate-x-1 translate-y-1 bg-cyan-700 group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                    <span className="absolute inset-0 w-full h-full bg-white border-2 border-cyan-700 group-hover:bg-cyan-700"></span>
+                    <span className="relative text-cyan-700 group-hover:text-cyan-100">
+                      <b>SHARE</b>
+                    </span>
+                  </button>
+
                   <Link
                     href={`/posts/${e.slug}`}
                     passHref
                     className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
                   >
-                    <Button
-                      type="ghost"
-                      className="text-black dark:text-slate-100"
-                      style={{ fontWeight: 700 }}
-                    >
-                      <div className="text-black dark:text-slate-100">
-                        Read Full News
-                      </div>
-                    </Button>
+                    <button className="relative px-6 py-2 group">
+                      <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-indigo-700 group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                      <span className="absolute inset-0 w-full h-full bg-white border-2 border-indigo-700 group-hover:bg-indigo-700"></span>
+                      <span className="relative text-indigo-700 group-hover:text-indigo-100 ">
+                        {" "}
+                        <b>READ FULL STORY</b>
+                      </span>
+                    </button>
                   </Link>
                 </div>
               </div>
