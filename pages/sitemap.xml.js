@@ -55,11 +55,11 @@ class Sitemap extends React.Component {
       let dat = await fetch("https://dailycrimenews.in/", requestOptions);
       dat = await dat.json();
       dat = dat?.data?.article?.data;
-      res?.setHeader("Content-Type", "text/xml");
+      res?.setHeader("Content-Type", "application/xml");
       res?.write(createSitemap(dat));
       res?.end();
     } catch (error) {
-      res?.setHeader("Content-Type", "text/xml");
+      res?.setHeader("Content-Type", "application/xml");
       res?.write(createSitemap([]));
       res.end();
     }
