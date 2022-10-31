@@ -1,7 +1,5 @@
 const runtimeCaching = require("next-pwa/cache");
 const withPWA = require("next-pwa")({
-  dest: "public",
-  distDir: "build",
   register: true,
   skipWaiting: true,
   runtimeCaching,
@@ -10,5 +8,6 @@ const withPWA = require("next-pwa")({
 
 const nextConfig = withPWA({
   // next config
+  distDir: "build",
 });
 module.exports = nextConfig;
