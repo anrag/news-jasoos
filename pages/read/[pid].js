@@ -12,8 +12,8 @@ import Link from "next/link";
 import { ShareAltOutlined } from "@ant-design/icons";
 import { share } from "../../components/Share";
 const qdata = gql`
-  query article($id: ID!) {
-    article(query: { id: $id }) {
+  query article($slug: String!) {
+    article(query: { slug: $slug }) {
       data {
         id
         title
@@ -32,7 +32,7 @@ const Post = () => {
 
   const { data } = useQuery(qdata, {
     variables: {
-      id: pid,
+      slug: pid,
     },
   });
   let detail = data?.article.data[0];

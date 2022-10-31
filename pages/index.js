@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 import { useEffect, useState } from "react";
 import client from "./api/graphql-client";
 import Image from "next/image";
-import { Tag } from "antd";
+import { Button, Tag } from "antd";
 import moment from "moment";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -23,6 +23,7 @@ export default function Home() {
             count
             data {
               id
+              slug
               title
               featureImage
               shortArticle
@@ -97,7 +98,7 @@ export default function Home() {
               key={id}
               className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
             >
-              <Link href={`https://newsjasoos.in/read/${e.id}`}>
+              <Link href={`https://newsjasoos.in/read/${e.slug}`}>
                 {e?.featureImage && (
                   <Image
                     className="rounded-t-lg"
@@ -111,8 +112,10 @@ export default function Home() {
                 )}
               </Link>
               <div className="p-5">
-                <Tag color="gold">अवनीश चौधरी</Tag>
-                <Tag color="black">
+                <Tag color="red" style={{ fontWeight: 900 }}>
+                  अवनीश चौधरी
+                </Tag>
+                <Tag color="black" style={{ fontWeight: 700 }}>
                   {moment(new Date(parseInt(e?.createdAt)).toString()).format(
                     "DD/MM/YY hh:mm A"
                   )}
@@ -141,10 +144,16 @@ export default function Home() {
                     Share
                   </a>
                   <Link
-                    href={`https://newsjasoos.in/read/${e.id}`}
+                    href={`/read/${e.slug}`}
+                    passHref
                     className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
                   >
-                    Read More
+                    <Button
+                      type="ghost"
+                      style={{ fontWeight: 700, color: "#000" }}
+                    >
+                      Read More
+                    </Button>
                   </Link>
                 </div>
               </div>

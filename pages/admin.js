@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import HTMLEditor from "../components/Html";
 import { gql, useMutation } from "@apollo/client";
-import { message, Select } from "antd";
+import { Input, message, Select } from "antd";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { fetchCategory } from "../utils/utils";
@@ -23,6 +23,7 @@ const Admin = () => {
       $longArticle: String!
       $category: String!
       $featureImage: String!
+      $slug: String!
       $secondaryImage: String!
       $shortArticle: String!
       $featureVideo: String!
@@ -33,6 +34,7 @@ const Admin = () => {
           title: $title
           longArticle: $longArticle
           category: $category
+          slug: $slug
           featureImage: $featureImage
           secondaryImage: $secondaryImage
           shortArticle: $shortArticle
@@ -49,6 +51,7 @@ const Admin = () => {
   const [remoteCategory, setRemoteCategory] = useState(null);
   const [shortDesc, setShortDesc] = useState(null);
   const [longDesc, setLongDesc] = useState(null);
+  const [localSlug, setLocalSlug] = useState(null);
   const [featuredImage, setFeaturedImage] = useState(null);
   const changeContent = (e) => {
     setLongDesc(e);
@@ -60,6 +63,7 @@ const Admin = () => {
         title: title,
         longArticle: longDesc,
         category: category,
+        slug: localSlug?.replaceAll(" ", "-"),
         featureImage: featuredImage,
         secondaryImage: featuredImage,
         shortArticle: shortDesc,
@@ -91,7 +95,9 @@ const Admin = () => {
       setFeaturedImage(res.data.Location);
     });
   };
-
+  const fetchSludge = (sludge) => {
+    setLocalSlug(sludge.target.value);
+  };
   return (
     <>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -153,7 +159,13 @@ const Admin = () => {
               </Select>
             </div>
           </div>
-
+          <div className="flex p-1 items-center justify-center">
+            <Input
+              type="text"
+              onChange={fetchSludge}
+              placeholder="Type English slug"
+            />
+          </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               {featuredImage && (
@@ -167,7 +179,7 @@ const Admin = () => {
             </div>
           </div>
 
-          {featuredImage && category && (
+          {featuredImage && category && localSlug && (
             <div>
               <button
                 onClick={onSubmit}

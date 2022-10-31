@@ -11,10 +11,10 @@ function createSitemap(response) {
   ${
     response.length > 0 &&
     response
-      .map(({ id, createdAt }, index) => {
+      .map(({ id, createdAt, slug }, index) => {
         return `
           <url>
-              <loc>${`${EXTERNAL_DATA_URL}/${id}`}</loc>
+              <loc>${`${EXTERNAL_DATA_URL}/${slug}`}</loc>
               <lastmod>${moment(
                 new Date(parseInt(createdAt)).toString()
               ).format("YYYY-MM-DDThh:mm: ssTZD")}</lastmod>
@@ -44,7 +44,7 @@ class Sitemap extends React.Component {
     var raw = JSON.stringify({
       variables: {},
       query:
-        "{\n  article {\n    count\n    data {\n      id\n      title\n  createdAt\n        }\n     }\n}",
+        "{\n  article {\n    count\n    data {\n      id\n   slug\n   title\n  createdAt\n        }\n     }\n}",
     });
 
     var requestOptions = {
