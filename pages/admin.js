@@ -12,7 +12,7 @@ const Admin = () => {
   useEffect(() => {
     fetchCategory().then((res) => {
       console.log(res);
-      setCategory(res);
+      setRemoteCategory(res);
     });
   }, []);
   const router = useRouter();
@@ -21,6 +21,7 @@ const Admin = () => {
     mutation addArticle(
       $title: String!
       $longArticle: String!
+      $category: String!
       $featureImage: String!
       $secondaryImage: String!
       $shortArticle: String!
@@ -31,7 +32,7 @@ const Admin = () => {
         input: {
           title: $title
           longArticle: $longArticle
-          category: $remoteCategory
+          category: $category
           featureImage: $featureImage
           secondaryImage: $secondaryImage
           shortArticle: $shortArticle
@@ -58,7 +59,7 @@ const Admin = () => {
       variables: {
         title: title,
         longArticle: longDesc,
-        category: remoteCategory,
+        category: category,
         featureImage: featuredImage,
         secondaryImage: featuredImage,
         shortArticle: shortDesc,
@@ -141,10 +142,10 @@ const Admin = () => {
               <Select
                 defaultValue="Select Category"
                 style={{ width: 220 }}
-                onChange={(e) => setRemoteCategory(e)}
+                onChange={(e) => setCategory(e)}
               >
-                {category.length > 0 &&
-                  category.map((e, id) => (
+                {remoteCategory?.length > 0 &&
+                  remoteCategory?.map((e, id) => (
                     <Option key={e.id} value={e.name}>
                       {e.name}
                     </Option>
@@ -166,7 +167,7 @@ const Admin = () => {
             </div>
           </div>
 
-          {featuredImage && remoteCategory && (
+          {featuredImage && category && (
             <div>
               <button
                 onClick={onSubmit}
