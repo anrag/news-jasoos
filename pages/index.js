@@ -1,3 +1,4 @@
+export const config = { amp: true };
 import SideNavbar from "../components/SideNavbar";
 import { gql } from "@apollo/client";
 import { useEffect, useState } from "react";
