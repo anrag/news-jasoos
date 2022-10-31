@@ -123,7 +123,7 @@ export default function Home(props) {
                   )}
                 </Tag>
 
-                <Link passHref href={`/posts/${e.id}`}>
+                <Link passHref href={`/posts/${e.slug}`}>
                   <h1 className="mb-2 text-m  font-bold tracking-tight text-gray-900 dark:text-white">
                     {e.title}
                   </h1>
