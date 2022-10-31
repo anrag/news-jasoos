@@ -1,25 +1,13 @@
-/** @type {import('next').NextConfig} */
-const withPWA = require("next-pwa");
-const nextConfig = {
-  reactStrictMode: false,
+const runtimeCaching = require("next-pwa/cache");
+const withPWA = require("next-pwa")({
   dest: "public",
-  swSrc: "service-worker.js",
   register: true,
   skipWaiting: true,
-  distDir: "build",
-  images: {
-    domains: ["my-usa-cricket.s3.amazonaws.com", "images.bhaskarassets.com"],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-  },
-};
-
-module.exports = withPWA({
-  pwa: {
-    dest: "public",
-    register: true,
-    skipWaiting: true,
-  },
+  runtimeCaching,
+  buildExcludes: [/middleware-manifest.json$/],
 });
 
+const nextConfig = withPWA({
+  // next config
+});
 module.exports = nextConfig;
