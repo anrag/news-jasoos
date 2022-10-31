@@ -1,6 +1,7 @@
 const runtimeCaching = require("next-pwa/cache");
 const withPWA = require("next-pwa")({
   dest: "public",
+  distDir: "build",
   register: true,
   skipWaiting: true,
   runtimeCaching,
