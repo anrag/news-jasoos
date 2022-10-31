@@ -184,7 +184,7 @@ const Post = () => {
                     type="primary"
                     block
                   >
-                    Share
+                    Share with friends
                   </Button>
                 </div>
               </article>
