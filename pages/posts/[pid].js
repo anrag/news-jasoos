@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { gql, useQuery } from "@apollo/client";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { NextSeo } from "next-seo";
 import SideNavbar from "../../components/SideNavbar";
 import Image from "next/image";
@@ -11,32 +11,37 @@ import Head from "next/head";
 import Link from "next/link";
 import { ShareAltOutlined } from "@ant-design/icons";
 import { share } from "../../components/Share";
-const qdata = gql`
-  query article($slug: String!) {
-    article(query: { slug: $slug }) {
-      data {
-        id
-        title
-        featureImage
-        slug
-        shortArticle
-        longArticle
-        secondaryImage
-        createdAt
-      }
-    }
-  }
-`;
+import NewsList from "../NewsList";
+import Axios  from "axios";
 const Post = () => {
   const router = useRouter();
-  let { pid } = router.query;
+  const [postData, setPostData] = useState(null);
+  const getPostData = async () => {
+    console.log(router.asPath.split("##")[1],"GETUSER")
+    if(router?.asPath?.split("##")[1]){
+      let getDAta = await Axios.get(`http://localhost:3000/api/postdata?articleId=${router.asPath.split("##")[1]}`);
+      getDAta = getDAta.data.data;
+      console.log(getDAta,"GIOGIG");
+      setPostData({
+        id: 1,
+        title: getDAta.title,
+        featureImage: getDAta.images[0].url,
+        slug: getDAta.title,
+        shortArticle: getDAta.title,
+        longArticle: getDAta.content,
+        secondaryImage: getDAta.images[0].url,
+        createdAt: getDAta.published,
+      });
+    }
+  }
 
-  const { data } = useQuery(qdata, {
-    variables: {
-      slug: pid,
-    },
-  });
-  let detail = data?.article.data[0];
+  let { pid } = router.query;
+  useEffect(() => {
+    getPostData();
+  },[router.asPath])
+
+
+  let detail = postData
   return (
     <>
       {
@@ -126,14 +131,14 @@ const Post = () => {
                 </div>
 
                 <div>
-                  {data?.article.data[0]?.featureImage && (
+                  {detail.featureImage && (
                     <Image
                       className="rounded-t-lg"
                       style={{ height: 200, width: "100%" }}
                       height={80}
                       width={"100%"}
                       layout="responsive"
-                      src={data?.article.data[0]?.featureImage}
+                      src={detail?.featureImage}
                       alt={detail?.title}
                     />
                   )}
@@ -144,7 +149,7 @@ const Post = () => {
                       <Tag color="gold">अवनीश चौधरी</Tag>
                       <Tag color="black">
                         {moment(
-                          new Date(parseInt(detail?.createdAt)).toString()
+                          ((detail?.createdAt)).toString()
                         ).format("DD/MM/YY hh:mm A")}
                       </Tag>
                     </div>
@@ -198,10 +203,22 @@ const Post = () => {
         )}
       </Suspense>
       <Suspense fallback={<p>Loading..</p>}>
-        <Home base="posts" />
+        <NewsList />
       </Suspense>
     </>
   );
 };
+
+
+// export async function getStaticProps() {
+
+//   const getDAta = await Axios.get("http://localhost:3000/api/hello");
+
+//   return {
+//     props:{
+//       results: getDAta.data.data
+//     }
+//   }
+// }
 
 export default Post;

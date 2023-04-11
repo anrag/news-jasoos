@@ -1,6 +1,6 @@
 // export const config = { amp: true };
 import SideNavbar from "../components/SideNavbar";
-import {React, memo} from 'react';
+import {React, memo, useEffect, useState} from 'react';
 import { gql } from "@apollo/client";
 import client from "./api/graphql-client";
 import Image from "next/image";
@@ -12,9 +12,18 @@ import Link from "next/link";
 import { share } from "../components/Share";
 import Script from "next/script";
 import  Axios  from "axios";
-const Home = ({results}) => {
-  console.log(results);
+const NewsList = ({}) => {
+  const [results,setResults] = useState(null);
+
+  const getInitalData = async () => {
+    const getDAta = await Axios.get("http://localhost:3000/api/hello");
+    setResults(getDAta.data.data)
+  }
+  useEffect(() => {
+    getInitalData();
+  },[])
   const router = useRouter()
+
   return (
     <>
       <Script
@@ -107,7 +116,7 @@ const Home = ({results}) => {
                   )}
                 </Tag>
 
-                <Link passHref href={`/posts/${e.title.replaceAll(" ","-")}##${e.id}`}>
+                <Link passHref href={`/posts/${e?.title?.replaceAll(" ","-")}##${e?.id}`}>
                   <h1 className="mb-2 text-m  font-bold tracking-tight text-gray-900 dark:text-white">
                     {e.title}
                   </h1>
@@ -122,7 +131,7 @@ const Home = ({results}) => {
                     onClick={() =>
                       share(
                         e.title,
-                        `/posts/${e.title.replaceAll(" ","-")}##${e.id}`,
+                        `/posts/${e.title}`,
                         e.title,
                         e?.images?.url
                       )
@@ -138,7 +147,7 @@ const Home = ({results}) => {
                 </div>
                 <div>
                   <Link
-                    href={`/posts/${e.title.replaceAll(" ","-")}##${e.id}`}
+                    href={`/posts/${e?.title?.replaceAll(" ","-")}##${e?.id}`}
                     passHref
                     className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
                   >
@@ -160,16 +169,16 @@ const Home = ({results}) => {
   );
 }
 
-export default memo(Home);
+export default memo(NewsList);
 
-export async function getStaticProps() {
+// export async function getStaticProps() {
 
-  const getDAta = await Axios.get("http://localhost:3000/api/hello");
+//   const getDAta = await Axios.get("http://localhost:3000/api/hello");
 
-  return {
-    props:{
-      results: getDAta.data.data
-    }
-  }
-}
+//   return {
+//     props:{
+//       results: getDAta.data.data
+//     }
+//   }
+// }
 
