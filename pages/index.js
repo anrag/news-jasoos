@@ -13,7 +13,6 @@ import { share } from "../components/Share";
 import Script from "next/script";
 import  Axios  from "axios";
 const Home = ({results}) => {
-  console.log(results);
   const router = useRouter()
   return (
     <>
@@ -82,7 +81,7 @@ const Home = ({results}) => {
               className="shadow-2xl flex-column content-center grid-cols-2  p-0 rounded-lg shadow-lg bg-white dark:bg-gray-800 max-w-sm"
             >
               <div key={id} className="rounded-lg">
-                {console.log(e?.images[0].url, "GGGG")}
+               
                 {e?.images[0]?.url && (
                   <Image
                     className="rounded-t-lg"
@@ -163,11 +162,11 @@ export default memo(Home);
 
 export async function getStaticProps() {
 
-  const getDAta = await Axios.get("https://www.newsjasoos.in/api/hello");
+  const getDAta = await Axios.get("https://2485-59-95-130-117.in.ngrok.io/api/hello");
 
   return {
     props:{
-      results: getDAta.data.data
+      results: getDAta?.data?.data || {}
     }
   }
 }
