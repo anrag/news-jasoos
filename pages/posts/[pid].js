@@ -137,6 +137,7 @@ const Post = () => {
                       style={{ height: 200, width: "100%" }}
                       height={80}
                       width={"100%"}
+                      
                       layout="responsive"
                       src={detail?.featureImage}
                       alt={detail?.title}
