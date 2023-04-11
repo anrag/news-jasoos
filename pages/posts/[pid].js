@@ -19,7 +19,7 @@ const Post = () => {
   const getPostData = async () => {
     console.log(router.asPath.split("##")[1],"GETUSER")
     if(router?.asPath?.split("##")[1]){
-      let getDAta = await Axios.get(`http://localhost:3000/api/postdata?articleId=${router.asPath.split("##")[1]}`);
+      let getDAta = await Axios.get(`https://www.newsjasoos.in/api/postdata?articleId=${router.asPath.split("##")[1]}`);
       getDAta = getDAta.data.data;
       console.log(getDAta,"GIOGIG");
       setPostData({
@@ -137,7 +137,7 @@ const Post = () => {
                       style={{ height: 200, width: "100%" }}
                       height={80}
                       width={"100%"}
-                      
+
                       layout="responsive"
                       src={detail?.featureImage}
                       alt={detail?.title}
@@ -213,7 +213,7 @@ const Post = () => {
 
 // export async function getStaticProps() {
 
-//   const getDAta = await Axios.get("http://localhost:3000/api/hello");
+//   const getDAta = await Axios.get("https://www.newsjasoos.in/api/hello");
 
 //   return {
 //     props:{

@@ -16,7 +16,7 @@ const NewsList = ({}) => {
   const [results,setResults] = useState(null);
 
   const getInitalData = async () => {
-    const getDAta = await Axios.get("http://localhost:3000/api/hello");
+    const getDAta = await Axios.get("https://www.newsjasoos.in/api/hello");
     setResults(getDAta.data.data)
   }
   useEffect(() => {
@@ -173,7 +173,7 @@ export default memo(NewsList);
 
 // export async function getStaticProps() {
 
-//   const getDAta = await Axios.get("http://localhost:3000/api/hello");
+//   const getDAta = await Axios.get("https://www.newsjasoos.in/api/hello");
 
 //   return {
 //     props:{

@@ -82,32 +82,31 @@ const Home = ({results}) => {
               className="shadow-2xl flex-column content-center grid-cols-2  p-0 rounded-lg shadow-lg bg-white dark:bg-gray-800 max-w-sm"
             >
               <div key={id} className="rounded-lg">
-               
-                  {console.log(e?.images[0].url,"GGGG")}
-                  {e?.images[0]?.url && (
-                    <Image
-                      className="rounded-t-lg"
-                      style={{ height: "25%", width: "100%" }}
-                      height={"60%"}
-                      width={"100%"}
-                      layout="responsive"
-                      src={e?.images[0]?.url}
-                      alt={e.title}
-                    />
-                  )}
-                
+                {console.log(e?.images[0].url, "GGGG")}
+                {e?.images[0]?.url && (
+                  <Image
+                    className="rounded-t-lg"
+                    style={{ height: "25%", width: "100%" }}
+                    height={"60%"}
+                    width={"100%"}
+                    layout="responsive"
+                    src={e?.images[0]?.url}
+                    alt={e.title}
+                  />
+                )}
               </div>
               <div className="p-5">
                 <Tag color="red" style={{ fontWeight: 900 }}>
                   अवनीश चौधरी
                 </Tag>
                 <Tag color="black" style={{ fontWeight: 700 }}>
-                  {moment(((e?.published)).toString()).format(
-                    "DD/MM/YY hh:mm A"
-                  )}
+                  {moment((e?.published).toString()).format("DD/MM/YY hh:mm A")}
                 </Tag>
-
-                <Link passHref href={`/posts/${e.title.replaceAll(" ","-")}##${e.id}`}>
+                <meta name="description" content={e?.title} />
+                <Link
+                  passHref
+                  href={`/posts/${e.title.replaceAll(" ", "-")}##${e.id}`}
+                >
                   <h1 className="mb-2 text-m  font-bold tracking-tight text-gray-900 dark:text-white">
                     {e.title}
                   </h1>
@@ -122,7 +121,7 @@ const Home = ({results}) => {
                     onClick={() =>
                       share(
                         e.title,
-                        `/posts/${e.title.replaceAll(" ","-")}##${e.id}`,
+                        `/posts/${e.title.replaceAll(" ", "-")}##${e.id}`,
                         e.title,
                         e?.images?.url
                       )
@@ -138,7 +137,7 @@ const Home = ({results}) => {
                 </div>
                 <div>
                   <Link
-                    href={`/posts/${e.title.replaceAll(" ","-")}##${e.id}`}
+                    href={`/posts/${e.title.replaceAll(" ", "-")}##${e.id}`}
                     passHref
                     className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
                   >
@@ -164,7 +163,7 @@ export default memo(Home);
 
 export async function getStaticProps() {
 
-  const getDAta = await Axios.get("http://localhost:3000/api/hello");
+  const getDAta = await Axios.get("https://www.newsjasoos.in/api/hello");
 
   return {
     props:{
