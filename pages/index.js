@@ -162,7 +162,7 @@ export default memo(Home);
 
 export async function getStaticProps() {
 
-  const getDAta = await Axios.get("https://2485-59-95-130-117.in.ngrok.io/api/hello");
+  const getDAta = await Axios.get("https://www.newsjasoos.in/api/hello");
 
   return {
     props:{
