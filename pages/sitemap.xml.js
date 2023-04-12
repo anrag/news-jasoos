@@ -1,21 +1,21 @@
+import  Axios  from "axios";
 import moment from "moment";
 import React from "react";
 
 const EXTERNAL_DATA_URL = "https://newsjasoos.in/posts";
 
 function createSitemap(response) {
+  console.log(response);
   return `<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${
     response.length > 0 &&
     response
-      .map(({ id, createdAt, slug }, index) => {
+      .map(({ id, published, title }, index) => {
         return `
           <url>
-              <loc>${`${EXTERNAL_DATA_URL}/${slug}`}</loc>
-              <lastmod>${moment(
-                new Date(parseInt(createdAt)).toString()
-              ).format()}</lastmod>
+              <loc>${`${EXTERNAL_DATA_URL}/${title.replaceAll(" ", "-")}##${id}`}</loc>
+              <lastmod>${moment(published.toString()).format()}</lastmod>
               <changefreq>monthly</changefreq>
           </url>
       `;
@@ -45,16 +45,11 @@ class Sitemap extends React.Component {
         "{\n  article {\n    count\n    data {\n      id\n   slug\n   title\n  createdAt\n        }\n     }\n}",
     });
 
-    var requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
+   
     try {
-      let dat = await fetch("https://dailycrimenews.in/", requestOptions);
-      dat = await dat.json();
-      dat = dat?.data?.article?.data;
+      let dat = await Axios.get("https://newsjasoos.in/api/hello");
+      dat = dat?.data?.data;
+      console.log(dat)
       res?.setHeader("Content-Type", "application/xml");
       res?.write(createSitemap(dat));
       res?.end();
