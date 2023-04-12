@@ -83,7 +83,6 @@ const NewsList = ({}) => {
           <SideNavbar />
         </aside>
       </div>
-      <h1>GOOGLE{JSON.stringify(value)}</h1>
       <div className="border-1  grid grid-flow-row gap-8 dark:bg-gray-900 dark:border-gray-800 text-neutral-600 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3  py-10 px-1">
         {results?.length > 0 &&
           results.map((e, id) => (
