@@ -38,4 +38,6 @@ const fetchCategory = async () => {
   return data.org.data;
 };
 
-export { fetchArticles, fetchCategory };
+const endPoint =`http://localhost:3000`
+const titleOfNews = (data) => data.split('##')[0]
+export { fetchArticles, fetchCategory,endPoint,titleOfNews };
