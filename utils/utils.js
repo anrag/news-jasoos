@@ -38,6 +38,6 @@ const fetchCategory = async () => {
   return data.org.data;
 };
 
-const endPoint =`https://newsjasoos.in`
+const endPoint =`https://www.newsjasoos.in`
 const titleOfNews = (data) => data.split('##')[0]
 export { fetchArticles, fetchCategory,endPoint,titleOfNews };
