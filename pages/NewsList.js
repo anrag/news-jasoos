@@ -1,10 +1,8 @@
 // export const config = { amp: true };
 import SideNavbar from "../components/SideNavbar";
-import {React, memo, useEffect, useState} from 'react';
-import { gql } from "@apollo/client";
-import client from "./api/graphql-client";
+import {React, memo, useContext, useEffect, useState} from 'react';
 import Image from "next/image";
-import { Button, Tag } from "antd";
+import { Tag } from "antd";
 import moment from "moment";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -12,21 +10,24 @@ import Link from "next/link";
 import { share } from "../components/Share";
 import Script from "next/script";
 import  Axios  from "axios";
+import { endPoint, titleOfNews } from "../utils/utils";
+import { newsContext } from "../context/newslist.context";
 const NewsList = ({}) => {
   const [results,setResults] = useState(null);
-
+  const data = useContext(newsContext);
   const getInitalData = async () => {
-    const getDAta = await Axios.get("https://www.newsjasoos.in/api/hello");
+    const getDAta = await Axios.get(`${endPoint}/api/hello`);
     setResults(getDAta.data.data)
   }
   useEffect(() => {
+    console.log(data,"GOTEEEE")
     getInitalData();
-  },[])
+  },[data])
   const router = useRouter()
 
   return (
-    <>
-      <Script
+    <newsContext.Consumer>
+     {value => <> <Script
         type="text/javascript"
         src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-636029ee664af571"
       ></Script>
@@ -82,7 +83,7 @@ const NewsList = ({}) => {
           <SideNavbar />
         </aside>
       </div>
-
+      <h1>GOOGLE{JSON.stringify(value)}</h1>
       <div className="border-1  grid grid-flow-row gap-8 dark:bg-gray-900 dark:border-gray-800 text-neutral-600 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3  py-10 px-1">
         {results?.length > 0 &&
           results.map((e, id) => (
@@ -116,13 +117,13 @@ const NewsList = ({}) => {
                   )}
                 </Tag>
 
-                <Link passHref href={`/posts/${e?.title?.replaceAll(" ","-")}##${e?.id}`}>
+                <Link passHref href={`/posts/${titleOfNews(e?.title)?.replaceAll(" ","-")}##${e?.id}`}>
                   <h1 className="mb-2 text-m  font-bold tracking-tight text-gray-900 dark:text-white">
-                    {e.title}
+                    {titleOfNews(e.title)}
                   </h1>
                 </Link>
                 <p className="mb-3  black dark:text-white">
-                  {e.title?.substring(0, 500)}
+                  {titleOfNews(e.title)?.substring(0, 500)}
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-1 mx-10 mb-10">
@@ -133,7 +134,7 @@ const NewsList = ({}) => {
                         e.title,
                         `/posts/${e.title}`,
                         e.title,
-                        e?.images?.url
+                        e?.images[0]?.url
                       )
                     }
                     className="relative px-6 py-2 group"
@@ -147,7 +148,7 @@ const NewsList = ({}) => {
                 </div>
                 <div>
                   <Link
-                    href={`/posts/${e?.title?.replaceAll(" ","-")}##${e?.id}`}
+                    href={`/posts/${titleOfNews(e?.title)?.replaceAll(" ","-")}##${e?.id}`}
                     passHref
                     className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
                   >
@@ -164,8 +165,8 @@ const NewsList = ({}) => {
               </div>
             </div>
           ))}
-      </div>
-    </>
+      </div></>}
+    </newsContext.Consumer>
   );
 }
 

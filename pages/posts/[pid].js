@@ -13,21 +13,22 @@ import { ShareAltOutlined } from "@ant-design/icons";
 import { share } from "../../components/Share";
 import NewsList from "../NewsList";
 import Axios  from "axios";
+import { endPoint, titleOfNews } from "../../utils/utils";
 const Post = () => {
   const router = useRouter();
   const [postData, setPostData] = useState(null);
   const getPostData = async () => {
     console.log(router.asPath.split("##")[1],"GETUSER")
     if(router?.asPath?.split("##")[1]){
-      let getDAta = await Axios.get(`https://www.newsjasoos.in/api/postdata?articleId=${router.asPath.split("##")[1]}`);
+      let getDAta = await Axios.get(`${endPoint}/api/postdata?articleId=${router.asPath.split("##")[1]}`);
       getDAta = getDAta.data.data;
       console.log(getDAta,"GIOGIG");
       setPostData({
         id: 1,
-        title: getDAta.title,
+        title: titleOfNews(getDAta.title),
         featureImage: getDAta.images[0].url,
         slug: getDAta.title,
-        shortArticle: getDAta.title,
+        shortArticle: titleOfNews(getDAta.title),
         longArticle: getDAta.content,
         secondaryImage: getDAta.images[0].url,
         createdAt: getDAta.published,
@@ -126,23 +127,12 @@ const Post = () => {
               <article className="rounded  content-center prose lg:prose-xl self-center shadow-2xl shadow-lg bg-white dark:bg-gray-900 p-1">
                 <div className="content-center text-black dark:text-slate-100">
                   <h1 className="text-black dark:text-slate-100">
-                    {detail?.title}
+                    {titleOfNews(detail?.title)}
                   </h1>
                 </div>
 
                 <div>
-                  {detail.featureImage && (
-                    <Image
-                      className="rounded-t-lg"
-                      style={{ height: 200, width: "100%" }}
-                      height={80}
-                      width={"100%"}
-
-                      layout="responsive"
-                      src={detail?.featureImage}
-                      alt={detail?.title}
-                    />
-                  )}
+                  
                 </div>
                 <div>
                   <div>
@@ -156,8 +146,8 @@ const Post = () => {
                     </div>
                   </div>
                   <div
-                    className="desktop:m-100 laptop:m-100 article-text text-black dark:text-slate-100"
-                    dangerouslySetInnerHTML={{ __html: detail?.longArticle }}
+                    className="mx-auto sm:text-center  article-text !break-normal !text-white !dark:text-slate-100"
+                    dangerouslySetInnerHTML={{ __html: detail?.longArticle.replaceAll("black","inherit") }}
                   />
                 </div>
                 {/* <div>
@@ -179,7 +169,7 @@ const Post = () => {
                     size="large"
                     onClick={() =>
                       share(
-                        detail.title,
+                        titleOfNews(detail.title),
                         `https://newsjasoos.in/posts/${detail.slug}`,
                         detail.shortArticle,
                         detail.featureImage

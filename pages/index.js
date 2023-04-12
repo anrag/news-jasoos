@@ -1,6 +1,6 @@
 // export const config = { amp: true };
 import SideNavbar from "../components/SideNavbar";
-import {React, memo} from 'react';
+import { React, memo, useContext, useEffect, useState } from "react";
 import { gql } from "@apollo/client";
 import client from "./api/graphql-client";
 import Image from "next/image";
@@ -11,11 +11,18 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { share } from "../components/Share";
 import Script from "next/script";
-import  Axios  from "axios";
-const Home = ({results}) => {
-  const router = useRouter()
+import Axios from "axios";
+import { endPoint, titleOfNews } from "../utils/utils";
+import { newsContext } from "../context/newslist.context";
+const Home = ({ results }) => {
+  // const data = useContext(newsContext);
+  const [newsArticles, setNewsArticles] = useState({});
+  useEffect(() => {
+    setNewsArticles(results);
+  }, []);
+  const router = useRouter();
   return (
-    <>
+    <newsContext.Provider value={{ newsArticles, setNewsArticles }}>
       <Script
         type="text/javascript"
         src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-636029ee664af571"
@@ -81,7 +88,6 @@ const Home = ({results}) => {
               className="shadow-2xl flex-column content-center grid-cols-2  p-0 rounded-lg shadow-lg bg-white dark:bg-gray-800 max-w-sm"
             >
               <div key={id} className="rounded-lg">
-               
                 {e?.images[0]?.url && (
                   <Image
                     className="rounded-t-lg"
@@ -104,14 +110,19 @@ const Home = ({results}) => {
                 <meta name="description" content={e?.title} />
                 <Link
                   passHref
-                  href={`/posts/${e.title.replaceAll(" ", "-")}##${e.id}`}
+                  href={`/posts/${titleOfNews(e.title)?.replaceAll(
+                    " ",
+                    "-"
+                  )}##${e.id}`}
                 >
                   <h1 className="mb-2 text-m  font-bold tracking-tight text-gray-900 dark:text-white">
-                    {e.title}
+                    {e.title?.split("##")[0]}
                   </h1>
                 </Link>
                 <p className="mb-3  black dark:text-white">
-                  {e.title?.substring(0, 500)}
+                  {e.title?.split("##")[1]?.substring(0, 500)
+                    ? e.title?.split("##")[1]?.substring(0, 500)
+                    : e.title?.substring(0, 500)}
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-1 mx-10 mb-10">
@@ -120,9 +131,12 @@ const Home = ({results}) => {
                     onClick={() =>
                       share(
                         e.title,
-                        `/posts/${e.title.replaceAll(" ", "-")}##${e.id}`,
+                        `/posts/${titleOfNews(e.title)?.replaceAll(
+                          " ",
+                          "-"
+                        )}##${e.id}`,
                         e.title,
-                        e?.images?.url
+                        e?.images[0]?.url
                       )
                     }
                     className="relative px-6 py-2 group"
@@ -136,7 +150,9 @@ const Home = ({results}) => {
                 </div>
                 <div>
                   <Link
-                    href={`/posts/${e.title.replaceAll(" ", "-")}##${e.id}`}
+                    href={`/posts/${
+                      e.title.replaceAll(" ", "-")?.split("##")[0]
+                    }##${e.id}`}
                     passHref
                     className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
                   >
@@ -154,20 +170,19 @@ const Home = ({results}) => {
             </div>
           ))}
       </div>
-    </>
+    </newsContext.Provider>
   );
-}
+};
 
 export default memo(Home);
 
 export async function getStaticProps() {
-
-  const getDAta = await Axios.get("https://www.newsjasoos.in/api/hello");
+  const getDAta = await Axios.get(`${endPoint}/api/hello`);
 
   return {
-    props:{
-      results: getDAta?.data?.data || {}
-    }
-  }
+    props: {
+      results: getDAta?.data?.data || {},
+    },
+    revalidate: 60,
+  };
 }
-
