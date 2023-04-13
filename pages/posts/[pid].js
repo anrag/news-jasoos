@@ -27,7 +27,7 @@ const Post = (props) => {
         title: titleOfNews(getDAta.title),
         featureImage: getDAta  ? getDAta?.images[0].url : '',
         slug: getDAta.title,
-        shortArticle: titleOfNews(getDAta.title),
+        shortArticle: getDAta.title?.replaceAll("#",''),
         longArticle: getDAta.content,
         secondaryImage: getDAta.images[0].url,
         createdAt: getDAta.published,
@@ -52,8 +52,8 @@ const Post = (props) => {
           description={detail?.shortArticle}
           openGraph={{
             url: `https://newsjasoos.in/posts/${pid}`,
-            title: !detail?.title ? pid?.replaceAll("-", " ") : detail?.title,
-            description: pid?.replaceAll("-", " ") || detail?.shortArticle,
+            title: siteTitle,
+            description: detail?.shortArticle,
             locale: "hi",
             images: [
               {
@@ -76,7 +76,6 @@ const Post = (props) => {
           custom-element="amp-auto-ads"
           src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"
         ></script>
-       
       </Head>
       <Suspense fallback={<p>Loading feed...</p>}>
         {!detail ? (

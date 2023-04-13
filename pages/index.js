@@ -14,6 +14,7 @@ import Script from "next/script";
 import Axios from "axios";
 import { endPoint, titleOfNews } from "../utils/utils";
 import { newsContext } from "../context/newslist.context";
+import { NextSeo } from "next-seo";
 const Home = ({ results }) => {
   // const data = useContext(newsContext);
   const [newsArticles, setNewsArticles] = useState({});
@@ -23,6 +24,25 @@ const Home = ({ results }) => {
   const router = useRouter();
   return (
     <newsContext.Provider value={{ newsArticles, setNewsArticles }}>
+      <NextSeo
+        title={
+          "News Jasoos - Breaking News in India, Latest Updates & Headlines,World News, Local Perspectives,Top Stories and News Analysis  In-Depth Reporting and Investigative Journalism "
+        }
+        description={`News Jasoos - your go-to source for breaking news, in-depth analysis, and expert opinion on the latest events and trends from around the world. Our mission is to provide you with accurate, reliable, and timely news coverage across a wide range of topics – from politics and business to entertainment and sports.
+        Our team of experienced journalists and writers are committed to delivering high-quality news content that is informative, engaging, and thought-provoking. We strive to present a balanced and unbiased view of the news, and we're not afraid to tackle tough topics and hold those in power accountable.
+        At our news site, you can expect to find breaking news alerts, exclusive interviews, feature stories, and in-depth reports on the issues that matter most to you. Whether you're looking for the latest updates on the global economy, the top stories of the day, or insightful analysis of the biggest events, we've got you covered.`}
+        openGraph={{
+          url: `https://newsjasoos.in`,
+          title : 
+            "News Jasoos - Breaking News in India, Latest Updates & Headlines,World News, Local Perspectives,Top Stories and News Analysis  In-Depth Reporting and Investigative Journalism "
+          ,
+          description:`News Jasoos - your go-to source for breaking news, in-depth analysis, and expert opinion on the latest events and trends from around the world. Our mission is to provide you with accurate, reliable, and timely news coverage across a wide range of topics – from politics and business to entertainment and sports.
+          Our team of experienced journalists and writers are committed to delivering high-quality news content that is informative, engaging, and thought-provoking. We strive to present a balanced and unbiased view of the news, and we're not afraid to tackle tough topics and hold those in power accountable.
+          At our news site, you can expect to find breaking news alerts, exclusive interviews, feature stories, and in-depth reports on the issues that matter most to you. Whether you're looking for the latest updates on the global economy, the top stories of the day, or insightful analysis of the biggest events, we've got you covered.`,
+          locale: "hi",
+          siteName: "News Jasoos - Breaking News in India, Latest Updates & Headlines,World News, Local Perspectives,Top Stories and News Analysis  In-Depth Reporting and Investigative Journalism "
+        }}
+      />
       <Script
         type="text/javascript"
         src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-636029ee664af571"
@@ -88,17 +108,17 @@ const Home = ({ results }) => {
               className="shadow-2xl flex-column content-center grid-cols-2  p-0 rounded-lg shadow-lg bg-white dark:bg-gray-800 max-w-sm"
             >
               <div key={id} className="rounded-lg">
-                { (
+                {
                   <Image
                     className="rounded-t-lg"
                     style={{ height: "25%", width: "100%" }}
                     height={"60%"}
                     width={"100%"}
                     layout="responsive"
-                    src={e?.images[0]?.url || "" }
+                    src={e?.images[0]?.url || ""}
                     alt={e.title}
                   />
-                )}
+                }
               </div>
               <div className="p-5">
                 <Tag color="red" style={{ fontWeight: 900 }}>
@@ -132,7 +152,7 @@ const Home = ({ results }) => {
                         e.title,
                         `/posts/${e.id}`,
                         e.title,
-                        (e?.images[0]?.url  ||"" )
+                        e?.images[0]?.url || ""
                       )
                     }
                     className="relative px-6 py-2 group"
