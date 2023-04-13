@@ -20,7 +20,6 @@ const NewsList = ({}) => {
     setResults(getDAta.data.data)
   }
   useEffect(() => {
-    console.log(data,"GOTEEEE")
     getInitalData();
   },[data])
   const router = useRouter()
@@ -92,15 +91,14 @@ const NewsList = ({}) => {
             >
               <div key={id} className="rounded-lg">
                
-                  {console.log(e?.images[0].url,"GGGG")}
-                  {e?.images[0]?.url && (
+                  { (
                     <Image
                       className="rounded-t-lg"
                       style={{ height: "25%", width: "100%" }}
                       height={"60%"}
                       width={"100%"}
                       layout="responsive"
-                      src={e?.images[0]?.url}
+                      src={e?.images[0]?.url || ""}
                       alt={e.title}
                     />
                   )}
@@ -116,7 +114,7 @@ const NewsList = ({}) => {
                   )}
                 </Tag>
 
-                <Link passHref href={`/posts/${titleOfNews(e?.title)?.replaceAll(" ","-")}##${e?.id}`}>
+                <Link passHref href={`/posts/${titleOfNews(e?.title)?.replaceAll(" ","-")}***${e?.id}`}>
                   <h1 className="mb-2 text-m  font-bold tracking-tight text-gray-900 dark:text-white">
                     {titleOfNews(e.title)}
                   </h1>
@@ -133,7 +131,7 @@ const NewsList = ({}) => {
                         e.title,
                         `/posts/${e.title}`,
                         e.title,
-                        e?.images[0]?.url
+                        (e?.images[0]?.url || "")
                       )
                     }
                     className="relative px-6 py-2 group"
@@ -147,7 +145,7 @@ const NewsList = ({}) => {
                 </div>
                 <div>
                   <Link
-                    href={`/posts/${titleOfNews(e?.title)?.replaceAll(" ","-")}##${e?.id}`}
+                    href={`/posts/${titleOfNews(e?.title)?.replaceAll(" ","-")}***${e?.id}`}
                     passHref
                     className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
                   >
