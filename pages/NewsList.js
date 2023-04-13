@@ -114,7 +114,7 @@ const NewsList = ({}) => {
                   )}
                 </Tag>
 
-                <Link passHref href={`/posts/${titleOfNews(e?.title)?.replaceAll(" ","-")}***${e?.id}`}>
+                <Link passHref href={`/posts/${e?.id}`}>
                   <h1 className="mb-2 text-m  font-bold tracking-tight text-gray-900 dark:text-white">
                     {titleOfNews(e.title)}
                   </h1>
@@ -129,7 +129,7 @@ const NewsList = ({}) => {
                     onClick={() =>
                       share(
                         e.title,
-                        `/posts/${e.title}`,
+                        `/posts/${e.id}`,
                         e.title,
                         (e?.images[0]?.url || "")
                       )
@@ -145,7 +145,7 @@ const NewsList = ({}) => {
                 </div>
                 <div>
                   <Link
-                    href={`/posts/${titleOfNews(e?.title)?.replaceAll(" ","-")}***${e?.id}`}
+                    href={`/posts/${e.id}`}
                     passHref
                     className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
                   >
