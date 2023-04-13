@@ -1,98 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Disclosure } from "@headlessui/react";
 import { MdOutlineSettings } from "react-icons/md";
 import Link from "next/link";
+import { Button } from "antd";
 
 function SideNavbar() {
-  return (
-    <div className="md:hidden ">
-      <Disclosure as="nav">
-        <Disclosure.Button
-          aria-label="menu-navigation"
-          className="absolute top-4 right-4 inline-flex items-center peer justify-center rounded-md p-2 text-gray-800 hover:bg-gray-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white group"
-        >
-          <GiHamburgerMenu
-            className="text-black dark:text-slate-100 block md:hidden h-6 w-6"
-            aria-hidden="true"
-          />
-        </Disclosure.Button>
-        <div className="bg-white dark:bg-slate-800 p-6 w-1/1 h-screen bg-white z-20 fixed top-0 -left-96 lg:left-0 lg:w-60  peer-focus:left-0 peer:transition ease-out delay-150 duration-200">
-          <div className="flex flex-col justify-start item-center">
-            <Link href={"/"} passHref>
-              <h1 className="text-base text-black dark:text-slate-100 text-center cursor-pointer font-bold text-blue-900 border-b border-gray-100 pb-4 w-full">
-                News Jasoos
-              </h1>
-            </Link>
-            {/* <div className=" my-4 border-b border-gray-100 pb-4"> */}
-            {/* <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <GiAk47U className="text-black dark:text-slate-100 text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-black dark:text-slate-100 text-gray-800 group-hover:text-white font-semibold ">
-                  Crime
-                </h3>
-              </div> */}
-            {/* <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <BiCameraMovie className="text-black dark:text-slate-100 text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-black dark:text-slate-100 text-gray-800 group-hover:text-white font-semibold ">
-                  Movie
-                </h3>
-              </div> */}
-            {/* <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdSportsCricket className="text-black dark:text-slate-100 text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-black dark:text-slate-100 text-gray-800 group-hover:text-white font-semibold ">
-                  Sports
-                </h3>
-              </div> */}
-            {/* <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdOutlineAnalytics className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
-                  Analytics
-                </h3>
-              </div>
-              <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <BiMessageSquareDots className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
-                  Messages
-                </h3>
-              </div>
-              <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdOutlineIntegrationInstructions className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
-                  Integration
-                </h3>
-              </div> */}
-            {/* </div> */}
-            {/* setting  */}
-            <div className=" my-4 border-b border-gray-100 pb-4">
-              <Link href={"/aboutus"} passHref>
-                <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                  {/* <MdOutlineSettings className="text-black dark:text-slate-100 text-2xl text-gray-600 group-hover:text-white " /> */}
-                  <p className="text-black dark:text-slate-100 text-base text-gray-800 group-hover:text-white font-semibold ">
-                    About Us
-                  </p>
-                </div>
-              </Link>
+  const [isScrolled, setIsScrolled] = useState(false);
 
-              {/* <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <FcContacts className="text-black dark:text-slate-100 text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-black dark:text-slate-100 text-base text-gray-800 group-hover:text-white font-semibold ">
-                  Contact Us
-                </h3>
-              </div> */}
-            </div>
-            {/* logout */}
-            {/* <div className=" my-4">
-              <div className="flex mb-2 justify-start items-center gap-4 pl-5 border border-gray-200  hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdOutlineLogout className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
-                  Logout
-                </h3>
-              </div>
-            </div> */}
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+  return isScrolled == false ? (
+    <header
+      className={`bg-white dark:bg-slate-800 shadow-lg ${
+        isScrolled ? "fixed top-0 w-full z-10" : ""
+      }`}
+    >
+      <nav className="flex items-center justify-between flex-wrap p-3">
+        <Link href={"/"} des passHref>
+          <div className="flex items-center flex-shrink-0 mr-6">
+            <span className="text-black dark:text-cyan-50 font-semibold text-xl tracking-tight">
+              NEWS JASOOS
+            </span>
+          </div>
+        </Link>
+        <div className="block ">
+          <div className="ml-1 mr-1">
+            <Link href={"/aboutus"} des passHref>
+              <button className="relative px-6 py-2 group">
+                <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-orange-700 group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                <span className="absolute inset-0 w-full h-full bg-white border-2 border-orange-700 group-hover:bg-orange-700"></span>
+                <span className="relative text-orange-700 group-hover:text-indigo-100 ">
+                  {" "}
+                  <b>ABOUT US</b>
+                </span>
+              </button>
+            </Link>
           </div>
         </div>
-      </Disclosure>
-    </div>
+      </nav>
+    </header>
+  ) : (
+    <></>
   );
 }
 

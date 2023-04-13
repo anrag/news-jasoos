@@ -22,8 +22,8 @@ const Post = (props) => {
       // let getDAta = await Axios.get(`${endPoint}/api/postdata?articleId=${router.asPath.split("***")[1]}`);
       
       let getDAta = props.results;
-      setPostData({
-        id: 1,
+       setPostData({
+        id: getDAta.id,
         title: titleOfNews(getDAta.title),
         featureImage: getDAta  ? getDAta?.images[0].url : '',
         slug: getDAta.title,
@@ -103,6 +103,7 @@ const Post = (props) => {
           </div>
         ) : (
           <>
+           <SideNavbar />
             <div className="bg-white dark:bg-slate-800 flex content-center flex-col">
               <div className="flex  sticky top-0 z-50">
                 <div className="basis-1/2 p-5">
@@ -118,7 +119,7 @@ const Post = (props) => {
                   </Link>
                 </div>
                 <div>
-                  <SideNavbar />
+                 
                 </div>
               </div>
               <article className="rounded  content-center prose lg:prose-xl self-center shadow-2xl shadow-lg bg-white dark:bg-gray-900 p-1">
@@ -170,7 +171,7 @@ const Post = (props) => {
                     onClick={() =>
                       share(
                         titleOfNews(detail.title),
-                        `https://newsjasoos.in/posts/${detail.id}`,
+                        `/posts/${detail.id}`,
                         detail.shortArticle,
                         detail.featureImage
                       )
