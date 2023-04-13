@@ -18,7 +18,7 @@ const Post = (props) => {
   const router = useRouter();
   const [postData, setPostData] = useState(null);
   const getPostData = async () => {
-    if(router?.asPath?.split("***")[1]){
+    if(router?.asPath){
       // let getDAta = await Axios.get(`${endPoint}/api/postdata?articleId=${router.asPath.split("***")[1]}`);
       
       let getDAta = props.results;
@@ -42,7 +42,7 @@ const Post = (props) => {
 
 
   let detail = postData
-  let siteTitle = detail?.title.replaceAll("-", " ")?.split("***")[0] ? detail?.title.replaceAll("-", " ")?.split("***")[0] : detail?.title.replaceAll("-", " ");
+  let siteTitle = detail?.title.replaceAll("-", " ")?.split("##")[0] ? detail?.title.replaceAll("-", " ")?.split("##")[0] : detail?.title.replaceAll("-", " ");
 
   return (
     <>
@@ -171,7 +171,7 @@ const Post = (props) => {
                     onClick={() =>
                       share(
                         titleOfNews(detail.title),
-                        `https://newsjasoos.in/posts/${detail.slug}`,
+                        `https://newsjasoos.in/posts/${detail.id}`,
                         detail.shortArticle,
                         detail.featureImage
                       )
@@ -203,7 +203,7 @@ const Post = (props) => {
 
 
 export async function getStaticProps({params} ) {
-  const getDAta = await Axios.get(`${endPoint}/api/postdata?articleId=${params?.pid?.split("***")[1]}`);
+  const getDAta = await Axios.get(`${endPoint}/api/postdata?articleId=${params?.pid}`);
   return {
     props: {
       results: getDAta?.data?.data || {},
@@ -219,7 +219,7 @@ export async function getStaticPaths() {
   const postsPaths = postMap?.map((post) => {
     // console.log(post);
     return {
-      params: { pid: `${titleOfNews(post.title)?.replaceAll(" ", "-")}***${post.id}`.toString(),id:post.id },
+      params: { pid: `${post.id}`.toString(),id:post.id },
     };
   });
   return {

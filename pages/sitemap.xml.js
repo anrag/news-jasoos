@@ -13,7 +13,7 @@ function createSitemap(response) {
       .map(({ id, published, title }, index) => {
         return `
           <url>
-              <loc>${`${EXTERNAL_DATA_URL}/${title.replaceAll(" ", "-")}##${id}`}</loc>
+              <loc>${`${EXTERNAL_DATA_URL}/${id}`}</loc>
               <lastmod>${moment(published.toString()).format()}</lastmod>
               <changefreq>monthly</changefreq>
           </url>

@@ -112,10 +112,7 @@ const Home = ({ results }) => {
                   passHref
                   prefetch={true}
                   shallow={true}
-                  href={`/posts/${titleOfNews(e.title)?.replaceAll(
-                    " ",
-                    "-"
-                  )}***${e.id}`}
+                  href={`/posts/${e.id}`}
                 >
                   <h1 className="mb-2 text-m  font-bold tracking-tight text-gray-900 dark:text-white">
                     {e.title?.split("##")[0]}
@@ -133,10 +130,7 @@ const Home = ({ results }) => {
                     onClick={() =>
                       share(
                         e.title,
-                        `/posts/${titleOfNews(e.title)?.replaceAll(
-                          " ",
-                          "-"
-                        )}##${e.id}`,
+                        `/posts/${e.id}`,
                         e.title,
                         (e?.images[0]?.url  ||"" )
                       )
@@ -152,9 +146,7 @@ const Home = ({ results }) => {
                 </div>
                 <div>
                   <Link
-                    href={`/posts/${
-                      e.title.replaceAll(" ", "-")?.split("##")[0]
-                    }***${e.id}`}
+                    href={`/posts/${e.id}`}
                     passHref
                     className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
                   >
