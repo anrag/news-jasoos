@@ -25,6 +25,9 @@ const Post = (props) => {
        setPostData({
         id: getDAta.id,
         title: titleOfNews(getDAta.title),
+        author:getDAta.author,
+        publishedTime:getDAta.published,
+        updatedTime:getDAta.updated,
         featureImage: getDAta  ? getDAta?.images[0].url : '',
         slug: getDAta.title,
         shortArticle: getDAta.title?.replaceAll("#",''),
@@ -52,16 +55,26 @@ const Post = (props) => {
           description={detail?.shortArticle}
           openGraph={{
             url: `https://newsjasoos.in/posts/${pid}`,
-            title: siteTitle,
-            description: detail?.shortArticle,
+            type:'article',
+            article :{
+              publishedTime:detail?.publishedTime,
+              modifiedTime:detail?.updatedTime,
+              authors: detail?.author?.image.length > 0 ? detail?.author?.image: []
+            }
+            ,
+            title: props.results?.title,
+            description: props.results?.images[0].title?.replaceAll("#",''),
             locale: "hi",
+            image: props.results?.images[0].url,
             images: [
               {
-                url: detail?.featureImage,
-                alt: siteTitle,
+                url: props.results?.images[0].url,
+                alt: props.results?.title,
+                width:"500px",
+                height:"500px"
               },
             ],
-            siteName: `News Jasoos - ${siteTitle}`,
+            siteName: `News Jasoos - ${props.results?.images[0].title?.replaceAll("#",'')}`,
           }}
         />
       }
