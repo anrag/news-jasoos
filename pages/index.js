@@ -88,14 +88,14 @@ const Home = ({ results }) => {
               className="shadow-2xl flex-column content-center grid-cols-2  p-0 rounded-lg shadow-lg bg-white dark:bg-gray-800 max-w-sm"
             >
               <div key={id} className="rounded-lg">
-                {e?.images[0]?.url && (
+                { (
                   <Image
                     className="rounded-t-lg"
                     style={{ height: "25%", width: "100%" }}
                     height={"60%"}
                     width={"100%"}
                     layout="responsive"
-                    src={e?.images[0]?.url}
+                    src={e?.images[0]?.url || "" }
                     alt={e.title}
                   />
                 )}
@@ -110,10 +110,12 @@ const Home = ({ results }) => {
                 <meta name="description" content={e?.title} />
                 <Link
                   passHref
+                  prefetch={true}
+                  shallow={true}
                   href={`/posts/${titleOfNews(e.title)?.replaceAll(
                     " ",
                     "-"
-                  )}##${e.id}`}
+                  )}***${e.id}`}
                 >
                   <h1 className="mb-2 text-m  font-bold tracking-tight text-gray-900 dark:text-white">
                     {e.title?.split("##")[0]}
@@ -136,7 +138,7 @@ const Home = ({ results }) => {
                           "-"
                         )}##${e.id}`,
                         e.title,
-                        e?.images[0]?.url
+                        (e?.images[0]?.url  ||"" )
                       )
                     }
                     className="relative px-6 py-2 group"
@@ -152,7 +154,7 @@ const Home = ({ results }) => {
                   <Link
                     href={`/posts/${
                       e.title.replaceAll(" ", "-")?.split("##")[0]
-                    }##${e.id}`}
+                    }***${e.id}`}
                     passHref
                     className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
                   >

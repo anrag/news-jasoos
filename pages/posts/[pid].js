@@ -14,19 +14,18 @@ import { share } from "../../components/Share";
 import NewsList from "../NewsList";
 import Axios  from "axios";
 import { endPoint, titleOfNews } from "../../utils/utils";
-const Post = () => {
+const Post = (props) => {
   const router = useRouter();
   const [postData, setPostData] = useState(null);
   const getPostData = async () => {
-    console.log(router.asPath.split("##")[1],"GETUSER")
-    if(router?.asPath?.split("##")[1]){
-      let getDAta = await Axios.get(`${endPoint}/api/postdata?articleId=${router.asPath.split("##")[1]}`);
-      getDAta = getDAta.data.data;
-      console.log(getDAta,"GIOGIG");
+    if(router?.asPath?.split("***")[1]){
+      // let getDAta = await Axios.get(`${endPoint}/api/postdata?articleId=${router.asPath.split("***")[1]}`);
+      
+      let getDAta = props.results;
       setPostData({
         id: 1,
         title: titleOfNews(getDAta.title),
-        featureImage: getDAta.images[0].url,
+        featureImage: getDAta  ? getDAta?.images[0].url : '',
         slug: getDAta.title,
         shortArticle: titleOfNews(getDAta.title),
         longArticle: getDAta.content,
@@ -43,11 +42,13 @@ const Post = () => {
 
 
   let detail = postData
+  let siteTitle = detail?.title.replaceAll("-", " ")?.split("***")[0] ? detail?.title.replaceAll("-", " ")?.split("***")[0] : detail?.title.replaceAll("-", " ");
+
   return (
     <>
       {
         <NextSeo
-          title={!detail?.title ? pid?.replaceAll("-", " ") : detail?.title}
+          title={siteTitle}
           description={detail?.shortArticle}
           openGraph={{
             url: `https://newsjasoos.in/posts/${pid}`,
@@ -56,15 +57,11 @@ const Post = () => {
             locale: "hi",
             images: [
               {
-                url:
-                  `https://my-usa-cricket.s3.amazonaws.com/profilePictures/${pid}` ||
-                  detail?.featureImage,
-                alt: !detail?.title ? pid?.replaceAll("-", " ") : detail?.title,
+                url: detail?.featureImage,
+                alt: siteTitle,
               },
             ],
-            siteName: `News Jasoos - ${
-              !detail?.title ? pid?.replaceAll("-", " ") : detail?.title
-            }`,
+            siteName: `News Jasoos - ${siteTitle}`,
           }}
         />
       }
@@ -79,6 +76,7 @@ const Post = () => {
           custom-element="amp-auto-ads"
           src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"
         ></script>
+       
       </Head>
       <Suspense fallback={<p>Loading feed...</p>}>
         {!detail ? (
@@ -131,23 +129,26 @@ const Post = () => {
                   </h1>
                 </div>
 
-                <div>
-                  
-                </div>
+                <div></div>
                 <div>
                   <div>
                     <div className="flex p-2">
                       <Tag color="gold">अवनीश चौधरी</Tag>
                       <Tag color="black">
-                        {moment(
-                          ((detail?.createdAt)).toString()
-                        ).format("DD/MM/YY hh:mm A")}
+                        {moment((detail?.createdAt).toString()).format(
+                          "DD/MM/YY hh:mm A"
+                        )}
                       </Tag>
                     </div>
                   </div>
                   <div
                     className="mx-auto sm:text-center  article-text !break-normal !text-white !dark:text-slate-100"
-                    dangerouslySetInnerHTML={{ __html: detail?.longArticle.replaceAll("black","inherit") }}
+                    dangerouslySetInnerHTML={{
+                      __html: detail?.longArticle.replaceAll(
+                        "black",
+                        "inherit"
+                      ),
+                    }}
                   />
                 </div>
                 {/* <div>
@@ -201,15 +202,30 @@ const Post = () => {
 };
 
 
-// export async function getStaticProps() {
+export async function getStaticProps({params} ) {
+  const getDAta = await Axios.get(`${endPoint}/api/postdata?articleId=${params?.pid?.split("***")[1]}`);
+  return {
+    props: {
+      results: getDAta?.data?.data || {},
+    },
+    revalidate: 180,
+  };
+}
 
-//   const getDAta = await Axios.get("https://www.newsjasoos.in/api/hello");
+export async function getStaticPaths() {
 
-//   return {
-//     props:{
-//       results: getDAta.data.data
-//     }
-//   }
-// }
+  const getDAta = await Axios.get("https://www.newsjasoos.in/api/hello");
+  let postMap = getDAta?.data?.data
+  const postsPaths = postMap?.map((post) => {
+    // console.log(post);
+    return {
+      params: { pid: `${titleOfNews(post.title)?.replaceAll(" ", "-")}***${post.id}`.toString(),id:post.id },
+    };
+  });
+  return {
+    paths: postsPaths,
+    fallback: false,
+  };
+}
 
 export default Post;

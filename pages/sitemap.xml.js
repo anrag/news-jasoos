@@ -5,7 +5,6 @@ import React from "react";
 const EXTERNAL_DATA_URL = "https://newsjasoos.in/posts";
 
 function createSitemap(response) {
-  console.log(response);
   return `<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${
@@ -49,7 +48,6 @@ class Sitemap extends React.Component {
     try {
       let dat = await Axios.get("https://newsjasoos.in/api/hello");
       dat = dat?.data?.data;
-      console.log(dat)
       res?.setHeader("Content-Type", "application/xml");
       res?.write(createSitemap(dat));
       res?.end();

@@ -4,7 +4,9 @@ export const share = async (title, url, text, imgUrl) => {
   message.destroy();
   message.loading("✋ कृपया प्रतीक्षा करें ✋");
   // Convert dataUrl into blob using browser fetch API
-  const blob = await (await fetch(imgUrl)).blob();
+  const blob = await (await fetch(imgUrl,{
+    mode:'no-cors'
+  })).blob();
 
   // Create file form the blob
   const image = new File([blob], "canvas.png", { type: blob.type });
