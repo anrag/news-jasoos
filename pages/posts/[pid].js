@@ -202,7 +202,7 @@ const Post = (props) => {
 
             <div className="p-2 text-center bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-100">
               <Divider className="bg-white dark:bg-slate-800" />
-              <p className="bigger-text">👇 और पड़े 👇</p>
+              <p className="bigger-text">👇 और पढ़े 👇</p>
             </div>
           </>
         )}
@@ -221,7 +221,7 @@ export async function getStaticProps({params} ) {
     props: {
       results: getDAta?.data?.data || {},
     },
-    revalidate: 180,
+    revalidate: 60,
   };
 }
 
