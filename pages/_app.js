@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 import Script from "next/script";
+import PushNotificationLayout from "../components/PushNotificationLayout";
 
 function MyApp({ Component, pageProps }) {
 
@@ -34,7 +35,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           gtag('config', 'G-YESQE809CB');
         `}
       </Script>
-      <Component {...pageProps} />
+      <PushNotificationLayout>
+        <Component {...pageProps} />
+      </PushNotificationLayout>
     </>
   );
 }
