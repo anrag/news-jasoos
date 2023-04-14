@@ -17,31 +17,33 @@ import { endPoint, titleOfNews } from "../../utils/utils";
 const Post = (props) => {
   const router = useRouter();
   const [postData, setPostData] = useState(null);
-  const getPostData = async () => {
-    if(router?.asPath){
-      // let getDAta = await Axios.get(`${endPoint}/api/postdata?articleId=${router.asPath.split("***")[1]}`);
-      
-      let getDAta = props.results;
-       setPostData({
-        id: getDAta.id,
-        title: titleOfNews(getDAta.title),
-        author:getDAta.author,
-        publishedTime:getDAta.published,
-        updatedTime:getDAta.updated,
-        featureImage: getDAta  ? getDAta?.images[0].url : '',
-        slug: getDAta.title,
-        shortArticle: getDAta.title?.replaceAll("#",''),
-        longArticle: getDAta.content,
-        secondaryImage: getDAta.images[0].url,
-        createdAt: getDAta.published,
-      });
-    }
-  }
+
+
 
   let { pid } = router.query;
   useEffect(() => {
+    const getPostData = async () => {
+      if(router?.asPath){
+        // let getDAta = await Axios.get(`${endPoint}/api/postdata?articleId=${router.asPath.split("***")[1]}`);
+        
+        let getDAta = props.results;
+         setPostData({
+          id: getDAta.id,
+          title: titleOfNews(getDAta.title),
+          author:getDAta.author,
+          publishedTime:getDAta.published,
+          updatedTime:getDAta.updated,
+          featureImage: getDAta  ? getDAta?.images[0].url : '',
+          slug: getDAta.title,
+          shortArticle: getDAta.title?.replaceAll("#",''),
+          longArticle: getDAta.content,
+          secondaryImage: getDAta.images[0].url,
+          createdAt: getDAta.published,
+        });
+      }
+    }
     getPostData();
-  },[router.asPath])
+  },[router?.asPath,props.results])
 
 
   let detail = postData
