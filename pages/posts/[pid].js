@@ -237,7 +237,7 @@ export async function getStaticPaths() {
   });
   return {
     paths: postsPaths,
-    fallback: false,
+    fallback: 'blocking',
   };
 }
 
