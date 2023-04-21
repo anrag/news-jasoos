@@ -196,6 +196,7 @@ const Post = (props) => {
                     </span>
                   </button>
                   <a
+                    rel="noreferrer"
                     target="_blank"
                     href={`https://api.whatsapp.com/send?text={${endPoint}/posts/${detail.id}}`}
                   >
@@ -218,7 +219,7 @@ const Post = (props) => {
                          
                           <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-6 w-6"
+                          className="h-6 w-6"
                           fill="currentColor"
                           viewBox="0 0 24 24"
                         >
