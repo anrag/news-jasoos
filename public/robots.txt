@@ -1,2 +1,15 @@
 User-agent: *
-Disallow: /admin/
+allow: /
+
+User-agent: SiteAuditBot
+Crawl-delay: 1
+Allow: /
+
+User-agent: Twitterbot
+Allow: /posts/*
+
+# Community rules
+Allow: /posts/*
+
+# Sitemap files
+Sitemap: https://www.newsjasoos.in/sitemap.xml
