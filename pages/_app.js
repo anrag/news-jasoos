@@ -48,18 +48,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         `}
       </Script>
       <Component {...pageProps} />
-      <footer class="bg-white  shadow  dark:bg-gray-800">
-        <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+      <footer className="bg-white  shadow  dark:bg-gray-800">
+        <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2023{" "}
-            <a href={endPoint} class="hover:underline">
+            <a href={endPoint} className="hover:underline">
               News Jasoos™
             </a>
             . All Rights Reserved.
           </span>
-          <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+          <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
             <li>
-              <Link href={"/aboutus"} class="mr-4 hover:underline md:mr-6 ">
+              <Link href={"/aboutus"} className="mr-4 hover:underline md:mr-6 ">
                 About
               </Link>
             </li>
