@@ -1,7 +1,8 @@
 import "../styles/globals.css";
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 import Script from "next/script";
-import PushNotificationLayout from "../components/PushNotificationLayout";
+import { endPoint } from "../utils/utils";
+import Link from "next/link";
 
 function MyApp({ Component, pageProps }) {
 
@@ -12,9 +13,20 @@ function MyApp({ Component, pageProps }) {
         name="google-site-verification"
         content="z3le9-Mv2EjvIW4OUoSgUO7C8jSggdmW-9W3Pyp8FJI"
       />
+
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-YESQE809CB"
         strategy="afterInteractive"
+      />
+      <Script
+        id="Adsense-id"
+        data-ad-client="ca-pub-1621029292135466"
+        async
+        strategy="afterInteractive"
+        onError={(e) => {
+          console.error("Script failed to load", e);
+        }}
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       />
       <script
         strategy="afterInteractive"
@@ -35,9 +47,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           gtag('config', 'G-YESQE809CB');
         `}
       </Script>
-      <PushNotificationLayout>
-        <Component {...pageProps} />
-      </PushNotificationLayout>
+      <Component {...pageProps} />
+      <footer class="bg-white  shadow  dark:bg-gray-800">
+        <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+            © 2023{" "}
+            <a href={endPoint} class="hover:underline">
+              News Jasoos™
+            </a>
+            . All Rights Reserved.
+          </span>
+          <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+            <li>
+              <Link href={"/aboutus"} class="mr-4 hover:underline md:mr-6 ">
+                About
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </footer>
     </>
   );
 }

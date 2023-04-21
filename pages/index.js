@@ -89,7 +89,7 @@ const Home = ({ results }) => {
           ></script>
         </Head>
       )}
-      <div className="dark:bg-gray-800 sticky top-0 z-50">
+      <div  style={{cursor:"pointer"}}  className="dark:bg-gray-800 sticky top-0 z-50">
         <amp-auto-ads
           type="adsense"
           data-ad-client="ca-pub-1621029292135466"
@@ -110,7 +110,8 @@ const Home = ({ results }) => {
                 {
                   <Image
                     className="rounded-t-lg"
-                    style={{ height: "25%", width: "100%" }}
+                  
+                    style={{ cursor:"pointer",height: "25%", width: "100%" }}
                     height={"60%"}
                     width={"100%"}
                     layout="responsive"
@@ -133,7 +134,7 @@ const Home = ({ results }) => {
                   shallow={true}
                   href={`/posts/${e.id}`}
                 >
-                  <h1 className="mb-2 text-m  font-bold tracking-tight text-gray-900 dark:text-white">
+                  <h1 style={{cursor:"pointer"}} className="mb-2 text-m  font-bold tracking-tight text-gray-900 dark:text-white">
                     {e.title?.split("##")[0]}
                   </h1>
                 </Link>
@@ -146,6 +147,7 @@ const Home = ({ results }) => {
               <div className="grid grid-cols-2 gap-1 mx-10 mb-10">
                 <div>
                   <button
+                  style={{cursor:"pointer"}}
                     onClick={() =>
                       share(
                         e.title,
@@ -163,7 +165,7 @@ const Home = ({ results }) => {
                     </span>
                   </button>
                 </div>
-                <div>
+                <div style={{cursor:"pointer"}}>
                   <Link
                     href={`/posts/${e.id}`}
                     passHref
