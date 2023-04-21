@@ -18,7 +18,7 @@ const nextConfig = withPWA({
   },
   experimental:{
     amp: {
-      skipValidation: true
+      skipValidation: false
     }
   }
 });
